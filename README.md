@@ -1,10 +1,18 @@
 
 # wang-jiameng-webdev
 
-1. git clone https://github.com/jannunzi/web-dev-template.git
-1. cd web-dev-template
-1. npm install
-1. mongod
-1. node server.js
-1. browse to localhost:3000
+I am a third year computer science student from Northeastern University.
+I once worked as Quality Assurance at Massachusetts Medical Society in 2016.
+
+This repository is for web development projects.
+
+Heroku Address:
+https://wang-jiameng-webdev.herokuapp.com
+
+Project link:
+https://wang-jiameng-webdev.herokuapp.com/project/index.html
+
+Assignment link:
+https://wang-jiameng-webdev.herokuapp.com/assignment/index.html
+
 
