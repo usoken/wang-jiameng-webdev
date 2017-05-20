@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Websites</title>
+    <title>Pages</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
 </head>
@@ -12,44 +12,44 @@
         <div class = "row">
 
             <div class = "col-sm-4 hidden-xs">
-        <div class="active">
-            <p class="navbar-text pull-left">
-                <a href="website-list.html">
-          <span class="glyphicon glyphicon-chevron-left">
-          </span>
-                </a>
-            </p>
-            <a class="navbar-brand">
-                Websites
-            </a>
-            <p class="navbar-text pull-right">
-                <a href="website-new.html">
-          <span class="glyphicon glyphicon-plus">
-          </span>
-                </a>
-            </p>
-        </div>
-            </div>
-            <div class="col-xs-12 col-sm-8">
                 <div class="active">
-                    <p class="navbar-text pull-left visible-xs">
+                    <p class="navbar-text pull-left">
                         <a href="website-list.html">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
                         </a>
                     </p>
+                    <a class="navbar-brand">
+                        Pages
+                    </a>
+                    <p class="navbar-text pull-right">
+                        <a href="page-new.html">
+          <span class="glyphicon glyphicon-plus">
+          </span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-8">
+                <div class="active">
+                    <p class="navbar-text pull-left visible-xs">
+                        <a href="page-list.html">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+                        </a>
+                    </p>
                     <a class="navbar-brand ">
-                        Edit Website
+                        Edit Page
                     </a>
                     <p class="pull-right navbar-text">
-                        <a href="website-list.html">
+                        <a href="page-list.html">
           <span class="glyphicon glyphicon-ok">
           </span>
                         </a>
                     </p>
                 </div>
             </div>
-    </div>
+        </div>
     </div>
 </nav>
 
@@ -62,10 +62,10 @@
 
                 <li class="list-group-item">
                     <div>
-                        <a href="page-list.html">
-                            Address Book App
+                        <a href="widget-list.html">
+                            Blog Post
                         </a>
-                        <a href="website-edit.html">
+                        <a href="page-edit.html">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>
@@ -73,10 +73,10 @@
 
                 <li class="list-group-item">
                     <div>
-                        <a href="page-list.html">
-                            Blogger
+                        <a href="widget-list.html">
+                            Blogs
                         </a>
-                        <a href="website-edit.html">
+                        <a href="page-edit.html">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>
@@ -84,10 +84,10 @@
 
                 <li class="list-group-item">
                     <div>
-                        <a href="page-list.html">
-                            Blogging App
+                        <a href="widget-list.html">
+                            Home
                         </a>
-                        <a href="website-edit.html">
+                        <a href="page-edit.html">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>
@@ -95,10 +95,20 @@
 
                 <li class="list-group-item">
                     <div>
-                        <a href="page-list.html">
-                            Script Testing App
+                        <a href="widget-list.html">
+                            About
                         </a>
-                        <a href="website-edit.html">
+                        <a href="page-edit.html">
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </a>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div>
+                        <a href="widget-list.html">
+                            Contact Us
+                        </a>
+                        <a href="page-edit.html">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>
@@ -106,17 +116,19 @@
             </ul>
         </div>
         <div class="col-xs-12 col-sm-8">
-            <label for="name">Website Name</label>
+            <label for="name">Name</label>
             <input id="name"
                    class="form-control"
-                   value="Blogger"/>
+                   value="Blog Post"/>
 
-            <label for="description">Website Description</label>
-            <textarea id="description"
+            <label for="title">Title</label>
+            <input id="title"
                       rows="5"
-                      class="form-control">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</textarea>
+                      class="form-control"
+            placeholder="Page Title">
+            </input>
 
-            <a href="website-list.html"
+            <a href="page-list.html"
                class="btn btn-block btn-danger">
                 Delete
             </a>
