@@ -8,41 +8,126 @@
     <link href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="active">
-            <p class="navbar-text pull-left">
-                <a href="page-list.html">
+        <div class = "row">
+            <div class = "col-sm-4 hidden-xs">
+                <div class="active">
+                    <p class="navbar-text pull-left">
+                        <a href="website-list.html">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
-                </a>
-            </p>
-            <a class="navbar-brand ">
-                Edit Page
-            </a>
-            <p class="pull-right navbar-text">
-                <a href="page-list.html">
+                        </a>
+                    </p>
+                    <a class="navbar-brand">
+                        Pages
+                    </a>
+                    <p class="navbar-text pull-right">
+                        <a href="page-new.html">
+          <span class="glyphicon glyphicon-plus">
+          </span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <div class="">
+                <div class="active">
+                    <p class="navbar-text pull-left visible-xs">
+                        <a href="page-list.html">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+                        </a>
+                    </p>
+                    <a class="navbar-brand ">
+                        New Page
+                    </a>
+                    <p class="pull-right navbar-text">
+                        <a href="page-list.html">
           <span class="glyphicon glyphicon-ok">
           </span>
-                </a>
-            </p>
+                        </a>
+                    </p>
+                </div>
+            </div>
         </div>
-    </div>
     </div>
 </nav>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4 hidden-xs srollable-left">
+            <ul class="list-group">
 
-<div class = "container-fluid">
+                <li class="list-group-item">
+                    <div>
+                        <a href="widget-list.html">
+                            Blog Post
+                        </a>
+                        <a href="page-edit.html">
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div>
+                        <a href="widget-list.html">
+                            Blogs
+                        </a>
+                        <a href="page-edit.html">
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div>
+                        <a href="widget-list.html">
+                            Home
+                        </a>
+                        <a href="page-edit.html">
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div>
+                        <a href="widget-list.html">
+                            About
+                        </a>
+                        <a href="page-edit.html">
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </a>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div>
+                        <a href="widget-list.html">
+                            Contact Us
+                        </a>
+                        <a href="page-edit.html">
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-8">
             <label for name="name" >Name</label>
             <input id="name"
                    class="form-control"
                    placeholder="Page Name"/>
             <label for="title">Title</label>
             <input id="title"
-                      rows="5"
-                      class="form-control"
-                      placeholder="Page Title"/>
+                   rows="5"
+                   class="form-control"
+                   placeholder="Page Title"/>
+        </div>
+    </div>
 </div>
+
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
