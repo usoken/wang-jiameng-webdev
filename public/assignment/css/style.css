@@ -16,6 +16,10 @@
 }
 */
 
+.navbar-header {
+    width: 100%;
+
+}
 input.form-control,
 textarea.form-control,
 select.form-control {
@@ -25,6 +29,8 @@ select.form-control {
 body {
     margin-top: 70px;
     margin-bottom: 60px;
+    padding-top: 5px;
+    
 }
 
 /*.navbar-default {*/
