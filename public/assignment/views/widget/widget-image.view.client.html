@@ -1,0 +1,42 @@
+
+
+<div class="container-fluid">
+
+    <label for="name">Name</label>
+    <input id="name"
+           class="form-control"/>
+
+    <label for="text">Text</label>
+    <input id="text"
+           class="form-control"
+    />
+    <label for="size">URL</label>
+    <input id="size"
+           ng-model = "model.widget.url"
+           class="form-control"
+           value="https://i.kinja-img.com/gawker-media/image/upload/s--kQW-rqr0--/c_scale,fl_progressive,q_80,w_800/peyikndaxktdvxzynsb5.jpg"/>
+
+    <label for="name">Width</label>
+    <input id="width"
+           ng-model = "model.widget.width"
+           class="form-control"
+    value="100%"/>
+
+    <label for="file">File Upload</label>
+    <input id="file"
+           multiple
+           type="file"
+           class="form-control"/>
+
+    <a href="#/widget-list"
+       class="btn btn-block btn-primary">
+        Upload Image
+    </a>
+
+    <a href="#/widget-list"
+       class="btn btn-block btn-danger">
+        Delete
+    </a>
+
+</div>
+

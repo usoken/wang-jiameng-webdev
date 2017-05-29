@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Websites</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
-</head>
-<body>
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class = "row">
             <div class = "col-sm-4 hidden-xs">
                 <div class="active">
                     <p class="navbar-text pull-left">
-                        <a href="website-list.html">
+                        <a href="#/website-list">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
                         </a>
@@ -23,7 +14,7 @@
                         Websites
                     </a>
                     <p class="navbar-text pull-right">
-                        <a href="website-new.html">
+                        <a href="#/website-new">
           <span class="glyphicon glyphicon-plus">
           </span>
                         </a>
@@ -33,7 +24,7 @@
             <div class="">
                 <div class="active">
                     <p class="navbar-text pull-left visible-xs">
-                        <a href="website-list.html">
+                        <a href="#/website-list">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
                         </a>
@@ -42,7 +33,7 @@
                         Edit Website
                     </a>
                     <p class="pull-right navbar-text">
-                        <a href="website-list.html">
+                        <a  ng-click="model. updateWebsite (website)">
           <span class="glyphicon glyphicon-ok">
           </span>
                         </a>
@@ -60,10 +51,10 @@
 
             <li class="list-group-item">
             <div>
-            <a href="page-list.html">
+            <a href="#/page-list">
             Address Book App
             </a>
-            <a href="website-edit.html">
+            <a href="#/website-edit.html">
             <span class="glyphicon glyphicon-cog pull-right"></span>
             </a>
             </div>
@@ -71,10 +62,10 @@
 
             <li class="list-group-item">
             <div>
-            <a href="page-list.html">
+            <a href="#/page-list">
             Blogger
             </a>
-            <a href="website-edit.html">
+            <a href="#/website-edit.html">
             <span class="glyphicon glyphicon-cog pull-right"></span>
             </a>
             </div>
@@ -82,10 +73,10 @@
 
             <li class="list-group-item">
             <div>
-            <a href="page-list.html">
+            <a href="#/page-list">
             Blogging App
             </a>
-            <a href="website-edit.html">
+            <a href="#/website-edit.html">
             <span class="glyphicon glyphicon-cog pull-right"></span>
             </a>
             </div>
@@ -93,10 +84,10 @@
 
             <li class="list-group-item">
             <div>
-            <a href="page-list.html">
+            <a href="#/page-list">
             Script Testing App
             </a>
-            <a href="website-edit.html">
+            <a href="#/website-edit.html">
             <span class="glyphicon glyphicon-cog pull-right"></span>
             </a>
             </div>
@@ -105,7 +96,8 @@
         </div>
         <div class="col-xs-12 col-sm-8">
             <label for="name">Website Name</label>
-            <input id="name"
+            <input ng-model = "model.website.name"
+                   id="name"
                    class="form-control"
                    value="Blogger"/>
 
@@ -114,8 +106,8 @@
                       rows="5"
                       class="form-control">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</textarea>
 
-            <a href="website-list.html"
-               class="btn btn-block btn-danger">
+            <a  ng-click="model.deleteWebsite()"
+                class="btn btn-block btn-danger">
                 Delete
             </a>
         </div>
@@ -125,7 +117,7 @@
     <div class="container-fluid">
         <div class="active">
             <p class = "navbar-text pull-right">
-                <a href="profile.html" >
+                <a href="#/profile" >
                     <span class="glyphicon glyphicon-user pull-right"></span>
                 </a>
             </p>
@@ -133,5 +125,3 @@
     </div>
 </nav>
 
-</body>
-</html>

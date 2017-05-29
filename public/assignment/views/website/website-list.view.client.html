@@ -1,0 +1,82 @@
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+
+        <div class="active">
+            <p class="navbar-text pull-left">
+                <a href="#/profile">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+                </a>
+            </p>
+            <a class="navbar-brand">
+                Websites
+            </a>
+            <p class="navbar-text pull-right">
+                <a href="#/website-new">
+          <span class="glyphicon glyphicon-plus">
+          </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class = "container-fluid">
+    <ul class="list-group">
+
+        <li ng-repeat="website in model.websites" class="list-group-item">
+            <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
+            <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
+                <span class="glyphicon glyphicon-play"></span>
+            </a>
+        </li>
+
+        <!--<li class="list-group-item">-->
+            <!--<div>-->
+                <!--<a href="#/page-list">-->
+                    <!--Blogger-->
+                <!--</a>-->
+                <!--<a href="#/website-edit">-->
+                    <!--<span class="glyphicon glyphicon-cog pull-right"></span>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</li>-->
+
+        <!--<li class="list-group-item">-->
+            <!--<div>-->
+                <!--<a href="#/page-list">-->
+                    <!--Blogging App-->
+                <!--</a>-->
+                <!--<a href="#/website-edit">-->
+                    <!--<span class="glyphicon glyphicon-cog pull-right"></span>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</li>-->
+
+        <!--<li class="list-group-item">-->
+            <!--<div>-->
+                <!--<a href="#/page-list">-->
+                    <!--Script Testing App-->
+                <!--</a>-->
+                <!--<a href="#/website-edit">-->
+                    <!--<span class="glyphicon glyphicon-cog pull-right"></span>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</li>-->
+    </ul>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="active">
+            <p class = "navbar-text pull-right">
+                <a href="#/profile" >
+                    <span class="glyphicon glyphicon-user pull-right"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

@@ -1,49 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>New Page</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
-</head>
-<body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class = "row">
+
             <div class = "col-sm-4 hidden-xs">
                 <div class="active">
                     <p class="navbar-text pull-left">
-                        <a href="website-list.html">
+                        <a href="#/website-list">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
                         </a>
                     </p>
                     <a class="navbar-brand">
-                        Pages
+                        Websites
                     </a>
                     <p class="navbar-text pull-right">
-                        <a href="page-new.html">
+                        <a href="#/website">
           <span class="glyphicon glyphicon-plus">
           </span>
                         </a>
                     </p>
                 </div>
             </div>
-            <div class="">
+            <div class=" ">
                 <div class="active">
                     <p class="navbar-text pull-left visible-xs">
-                        <a href="page-list.html">
+                        <a href="#/website-list">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
                         </a>
                     </p>
                     <a class="navbar-brand ">
-                        New Page
+                        New Website
                     </a>
                     <p class="pull-right navbar-text">
-                        <a href="page-list.html">
+                        <a href="#/website-list">
           <span class="glyphicon glyphicon-ok">
           </span>
                         </a>
@@ -54,6 +45,8 @@
     </div>
 </nav>
 
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-4 hidden-xs srollable-left">
@@ -61,10 +54,10 @@
 
                 <li class="list-group-item">
                     <div>
-                        <a href="widget-list.html">
-                            Blog Post
+                        <a href="#/page-list">
+                            Address Book App
                         </a>
-                        <a href="page-edit.html">
+                        <a href="#/website-edit">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>
@@ -72,10 +65,10 @@
 
                 <li class="list-group-item">
                     <div>
-                        <a href="widget-list.html">
-                            Blogs
+                        <a href="#/page-list">
+                            Blogger
                         </a>
-                        <a href="page-edit.html">
+                        <a href="#website-edit">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>
@@ -83,10 +76,10 @@
 
                 <li class="list-group-item">
                     <div>
-                        <a href="widget-list.html">
-                            Home
+                        <a href="#/page-list">
+                            Blogging App
                         </a>
-                        <a href="page-edit.html">
+                        <a href="#/website-edit">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>
@@ -94,20 +87,10 @@
 
                 <li class="list-group-item">
                     <div>
-                        <a href="widget-list.html">
-                            About
+                        <a href="#/page-list">
+                            Script Testing App
                         </a>
-                        <a href="page-edit.html">
-                            <span class="glyphicon glyphicon-cog pull-right"></span>
-                        </a>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div>
-                        <a href="widget-list.html">
-                            Contact Us
-                        </a>
-                        <a href="page-edit.html">
+                        <a href="#/website-edit">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>
@@ -116,32 +99,27 @@
         </div>
         <div class="col-xs-12 col-sm-8">
             <label for name="name" >Name</label>
-            <input id="name"
+            <input ng-model = "ng.website.newName"
+                   id="name"
                    class="form-control"
-                   placeholder="Page Name"/>
-            <label for="title">Title</label>
-            <input id="title"
-                   rows="5"
-                   class="form-control"
-                   placeholder="Page Title"/>
+                   placeholder="name"/>
+            <label for="description">Description</label>
+            <textarea id="description"
+                      rows="5"
+                      class="form-control"
+                      placeholder="description"></textarea>
         </div>
     </div>
 </div>
-
-
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="active">
             <p class = "navbar-text pull-right">
-                <a href="profile.html">
+                <a href="#/profile">
                     <span class="glyphicon glyphicon-user pull-right"></span>
                 </a>
             </p>
         </div>
     </div>
 </nav>
-
-
-</body>
-</html>

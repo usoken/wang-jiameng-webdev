@@ -1,0 +1,42 @@
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="active">
+            <p class="navbar-text pull-left">
+                <a href="#/widget-list">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+                </a>
+            </p>
+            <a class="navbar-brand" href="">
+                Choose Widget
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class = "container" scrolling="yes">
+    <div  ng-switch="widget.widgetType" >
+        <div  ng-switch-when="HEADING" >
+        <ng-include  src="'../widget-heading-edit.view.client.html'"/></div>
+        <div  ng-switch-when="IMAGE" >
+            <ng-include  src="'../widget-image-edit.view.client.html'"/>
+        </div>
+        <div  ng-switch-when="YOUTUBE" >
+            <ng-include  src="'widget-youtube-edit.view.client.html'"/>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="active">
+            <p class = "navbar-text pull-right">
+                <a href="#/profile">
+                    <span class="glyphicon glyphicon-user pull-right"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
