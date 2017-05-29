@@ -12,6 +12,12 @@
             <a class="navbar-brand" href="">
                 Edit Widget
             </a>
+            <p class="navbar-text pull-right">
+                <a ng-click="model.updateWidget()" class="navbar-link">
+                        <span class="glyphicon glyphicon-ok">
+                        </span>
+                </a>
+            </p>
         </div>
     </div>
 </nav>
@@ -27,6 +33,10 @@
             <ng-include  src="'widget-youtube-edit.view.client.html'"/>
         </div>
     </div>
+    <a class="btn btn-primary  btn-block"
+       ng-click="model.updateWidget()">Update</a>
+    <a class="btn btn-danger  btn-block"
+       ng-click="model.deleteWidget()">Delete</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

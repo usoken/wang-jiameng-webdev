@@ -4,21 +4,23 @@
 
     <label for="name">Name</label>
     <input id="name"
+           ng-model="name"
            class="form-control"/>
 
     <label for="text">Text</label>
     <input id="text"
+           ng-model="text"
            class="form-control"
     />
     <label for="size">URL</label>
     <input id="size"
-           ng-model = "model.widget.url"
+           ng-model = "url"
            class="form-control"
            value="https://i.kinja-img.com/gawker-media/image/upload/s--kQW-rqr0--/c_scale,fl_progressive,q_80,w_800/peyikndaxktdvxzynsb5.jpg"/>
 
     <label for="name">Width</label>
     <input id="width"
-           ng-model = "model.widget.width"
+           ng-model = "width"
            class="form-control"
     value="100%"/>
 
@@ -28,15 +30,6 @@
            type="file"
            class="form-control"/>
 
-    <a href="#/widget-list"
-       class="btn btn-block btn-primary">
-        Upload Image
-    </a>
-
-    <a href="#/widget-list"
-       class="btn btn-block btn-danger">
-        Delete
-    </a>
 
 </div>
 

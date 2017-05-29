@@ -1,67 +1,93 @@
 (function () {
     angular
-        .module('WebAppMaker')
-        .controller('WidgetListController', WidgetListController)
-        .controller('NewWidgetController', NewWidgetController)
-        .controller('EditWidgetController', EditWidgetController);
+        .module("WebAppMaker")
+        .controller("WidgetListController", WidgetListController)
+        .controller("WidgetChooserController", WidgetChooserController)
+        .controller("EditWidgetController", EditWidgetController);
 
-    function EditWidgetController($routeParams, $location, widgetService) {
+    function WidgetListController($sce, $routeParams, widgetService) {
         var vm = this;
-        vm.userId = $routeParams.userId;
-        vm.websiteId = $routeParams.websiteId;
-        vm.pageId = $routeParams.pageId;
-        vm.widgetId = $routeParams.widgetId;
+        vm.getHtml = getHtml;
+        vm.getUrl = getUrl;
+
+        vm.userId = $routeParams['uid'];
+        vm.websiteId = $routeParams['wid'];
+        vm.pageId = $routeParams['pid'];
+        vm.widgetId = $routeParams['wgid'];
+
+        function init() {
+            vm.widgets = widgetService.findWidgetsByPageId(vm.pageId);
+        }
+        init();
+
+        function getHtml(widget) {
+            var html = $sce.trustAsHtml(widget.text);
+            return html;
+        }
+
+        function getUrl(widget) {
+            var urlParts = widget.url.split("/");
+            var id = urlParts[urlParts.length - 1];
+            var url = "https://www.youtube.com/embed/" + id;
+            return $sce.trustAsResourceUrl(url);
+        }
+    }
+
+    function WidgetChooserController($location, $routeParams, widgetService) {
+        var vm = this;
+        vm.userId = $routeParams['uid'];
+        vm.websiteId = $routeParams['wid'];
+        vm.pageId = $routeParams['pid'];
+        vm.widgetId = $routeParams['wgid'];
+        vm.createWidget = createWidget;
+
+        function init() {
+            vm.widgets = widgetService.findWidgetsByPageId(vm.pageId);
+        }
+        init();
+
+        function createWidget(widgetType) {
+            var newWidget = {
+                _id: (new Date()).getTime(),
+                name: "",
+                widgetType: widgetType,
+                pageId: vm.pageId
+            };
+            widgetService.createWidget(vm.pageId, newWidget);
+            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + newWidget._id);
+        }
+    }
+
+    function EditWidgetController($location, $routeParams, widgetService) {
+        var vm = this;
+        vm.userId = $routeParams['uid'];
+        vm.websiteId = $routeParams['wid'];
+        vm.pageId = $routeParams['pid'];
+        vm.widgetId = $routeParams['wgid'];
+        vm.deleteWidget = deleteWidget;
+        vm.updateWidget = updateWidget;
+        vm.getTemplate = getTemplate;
 
         function init() {
             vm.widget = widgetService.findWidgetById(vm.widgetId);
-            vm.wigetType=vm.widget.widgetType;
+            vm.widgets = widgetService.findWidgetsByPageId(vm.pageId);
+            console.log(vm.widget)
         }
         init();
 
-
-    }
-
-    function NewWidgetController() {
-
-    }
-
-
-    function WidgetListController($sce, $routeParams, WidgetService) {
-
-        var vm = this;
-
-        vm.trustThisContent = trustThisContent;
-        vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
-        vm.getWidgetUrlForType = getWidgetUrlForType;
-
-
-        function init() {
-            vm.userId = $routeParams.userId;
-            vm.websiteId = $routeParams.websiteId;
-            vm.pageId = $routeParams.pageId;
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
-        }
-        init();
-
-
-        function getWidgetUrlForType(type) {
-            return 'views/widget/templates/widget-'+type.toLowerCase()+'.view.client.html';
+        function getTemplate(widgetType) {
+            var template = 'views/widget/templates/widget-' + vm.widget.widgetType.toLowerCase() + '.html';
+            return template;
         }
 
-        function getYouTubeEmbedUrl(youTubeLink) {
-            var embedUrl = 'https://www.youtube.com/embed/';
-            var youTubeLinkParts = youTubeLink.split('/');
-            var id = youTubeLinkParts[youTubeLinkParts.length - 1];
-            embedUrl += id;
-            console.log(embedUrl);
-            return $sce.trustAsResourceUrl(embedUrl);
-
-            //https://www.youtube.com/embed/AM2Ivdi9c4E
+        function deleteWidget() {
+            widgetService.deleteWidget(vm.widgetId);
+            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + /widget/);
         }
 
-        function trustThisContent(html) {
-            // diligence to scrub any unsafe content
-            return $sce.trustAsHtml(html);
+        function updateWidget() {
+            var result = widgetService.updateWidget(vm.widgetId, vm.widget);
+            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + /widget/);
         }
     }
 })();
