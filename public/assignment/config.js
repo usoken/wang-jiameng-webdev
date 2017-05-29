@@ -5,6 +5,7 @@
 
     function configuration($routeProvider) {
         $routeProvider
+            .when('/',{templateUrl:'home.html'})
             //user flow
             .when('/login', {
                 templateUrl: 'views/user/login.view.client.html',

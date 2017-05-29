@@ -10,17 +10,12 @@
         vm.register = register;
 
         function register(username, password, confirmPassword) {
-            if (username == undefined) {
-                vm.error = "Invalid username";
-            }
 
-            else if(password !== confirmPassword) {
+
+            if(password !== confirmPassword) {
                 vm.error = "Passwords must match";
             }
 
-            else if(password === undefined) {
-                vm.error = "Invalid password";
-            }
             else {
                 var found = userService.findUserByUsername(username);
 
