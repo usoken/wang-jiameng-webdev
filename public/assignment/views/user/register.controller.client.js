@@ -11,26 +11,32 @@
 
         function register(username, password, confirmPassword) {
 
-
-            if(password !== confirmPassword) {
-                vm.error = "Passwords must match";
+            if (username === undefined && password === undefined && confirmPassword === undefined){
+                vm.error = "You can't leave this empty";
             }
 
             else {
-                var found = userService.findUserByUsername(username);
+                if(password !== confirmPassword) {
+                    vm.error = "Passwords must match";
+                }
 
-                if(found !== null) {
-                    model.error = "Username is not available";
-                } else {
-                    var user = {
-                        username: username,
-                        password: password
-                    };
+                else {
+                    var found = userService.findUserByUsername(username);
 
-                    userService.createUser(user);
-                    $location.url('/user/' + user._id);
+                    if(found !== null) {
+                        model.error = "Username is not available";
+                    } else {
+                        var user = {
+                            username: username,
+                            password: password
+                        };
+
+                        userService.createUser(user);
+                        $location.url('/user/' + user._id);
+                    }
                 }
             }
+
         }
     }
 })();
