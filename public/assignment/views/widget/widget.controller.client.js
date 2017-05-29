@@ -21,6 +21,10 @@
 
     }
 
+    function NewWidgetController() {
+
+    }
+
 
     function WidgetListController($sce, $routeParams, WidgetService) {
 

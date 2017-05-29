@@ -8,12 +8,11 @@
                                    $location) {
 
         var vm = this;
-        vm.userId = $routeParams['userId'];
-        vm.websiteId = $routeParams.websiteId;
+        vm.userId = $routeParams['uid'];
+        vm.websiteId = $routeParams['wid'];
 
 
         // event handlers
-        vm.createWebsite = createWebsite;
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
 
@@ -23,20 +22,14 @@
         }
         init();
 
-        // implementation
-        function createWebsite(website) {
-            website.developerId = vm.userId;
-            websiteService.createWebsite(website);
-            $location.url('/user/'+vm.userId+'/website');
+        function updateWebsite() {
+            websiteService.updateWebsite (vm.websiteId, vm.website);
+            $location.url("/user/" + vm.userId + "/website/");
         }
 
-        function updateWebsite(website) {
-            WebsiteService. updateWebsite (vm.websiteId, website);
-        }
-
-        function deleteWebsite(websiteId) {
+        function deleteWebsite() {
             websiteService.deleteWebsite(vm.websiteId);
-            $location.url('/user/'+vm.userId+'/website');
+            $location.url('/user/'+vm.userId+'/website/');
         }
     }
 })();

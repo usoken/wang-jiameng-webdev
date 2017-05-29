@@ -23,16 +23,17 @@
             deleteWebsite: deleteWebsite
         };
 
-        function createWebsite(website) {
-            website._id = (new Date()).getTime() + "";
+        function createWebsite(userId,website) {
+            website.developerId = userId;
             websites.push(website);
         }
 
-        function updateWebsite(websiteId, newWebsite) {
+        function updateWebsite(websiteId, Website) {
             for (var w in websites) {
                 var website = websites[w];
                 if (websiteId === website._id) {
-                    website.name = newWebsite.name;
+                    website.description = Website.description;
+                    website.name =Website.name;
                 }
             }
         }

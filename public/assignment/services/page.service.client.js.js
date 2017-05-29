@@ -1,65 +1,78 @@
 (function () {
     angular
-        .module('WebAppMaker')
-        .factory('pageService', pageService);
+        .module("WebAppMaker")
+        .factory("pageService", pageService);
+
+    var pages = [
+        {"_id": "321", "name": "Post 1", "websiteId": "456", "title": "Lorem"},
+        {"_id": "432", "name": "Post 2", "websiteId": "456", "title": "Lorem"},
+        {"_id": "543", "name": "Post 3", "websiteId": "456", "title": "Lorem"}
+    ];
 
     function pageService() {
-        var pages =
-            [
-                { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
-                { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
-                { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
-            ];
-
-        var api ={
-            "createPage":createPage,
-            "findPageByWebsiteId":findPageByWebsiteId,
-            "findPageById":findPageById,
-            "updatePage":updatePage,
-            "deletePage":deletePage
+        return {
+            findPagesByWebsiteId: findPagesByWebsiteId,
+            findPageById: findPageById,
+            createPage: createPage,
+            updatePage: updatePage,
+            deletePage: deletePage,
+            findAllPagesForUser: findAllPagesForUser
         };
-        return api;
-        
-        function createPage(websiteId, page){
-            page._id = (new Date()).getTime() + "";
+
+        function createPage(websiteId, page) {
             page.websiteId = websiteId;
             pages.push(page);
-            
         }
-        
-        function findPageByWebsiteId(websiteId) {
-            var resultSet = [];
-            for(var p in pages) {
-                if(pages[p].websiteId === websiteId) {
-                    resultSet.push(pages[p]);
+
+        function findPagesByWebsiteId(websiteId) {
+            var result = [];
+            for (var p in pages) {
+                if (pages[p].websiteId === websiteId) {
+                    result.push(pages[p]);
                 }
             }
-            return resultSet;
+            return result;
         }
 
         function findPageById(pageId) {
-            return pages.find(function (page) {
-                return page._id === pageId;
-            })
+            for (var p in pages) {
+                if (pages[p]._id === pageId) {
+                    return pages[p];
+                }
+            }
+            return null;
         }
 
         function updatePage(pageId, page) {
             for (var p in pages) {
-                var page = pages[p];
-                if (pageId === page._id) {
-                    page.name = page.name;
+                if (pages[p]._id === pageId) {
+                    pages[p] = page;
+                    return true;
                 }
             }
+            return false;
         }
 
         function deletePage(pageId) {
-            var page = pages.find(function (page) {
-                return page._id === pageId;
-            });
-            var index = pages.indexOf(page);
-            pages.splice(index, 1);
+            for (var p in pages) {
+                if (pages[p]._id === pageId) {
+                    pages.splice(p, 1);
+                    return true;
+                }
+            }
+            return false;
         }
 
+        function findAllPagesForUser(websiteId) {
+            var resultSet = [];
+            for (var w in pages) {
+                if (pages[w].websiteId === websiteId) {
+                    console.log(websiteId);
+                    resultSet.push(pages[w]);
+                }
+            }
+            console.log("service" + resultSet);
+            return resultSet;
+        }
     }
-
-})
+})();

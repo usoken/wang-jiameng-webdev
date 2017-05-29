@@ -5,7 +5,6 @@
 
         <div class="active">
             <p class="navbar-text pull-left">
-                <!--TODO-->
                 <a href="#!/user/{{model.userId}}">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
@@ -15,7 +14,7 @@
                 Websites
             </a>
             <p class="navbar-text pull-right">
-                <a href="#!website-new">
+                <a href="#!/user/{{model.userId}}/website/new">
           <span class="glyphicon glyphicon-plus">
           </span>
                 </a>
@@ -28,11 +27,12 @@
     <ul class="list-group">
 
         <li ng-repeat="website in model.websites" class="list-group-item">
-            <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
-            <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="pull-right">
+            <div class = "row">
+            <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
+            <a href="#!/user/{{website.developerId}}/website/{{website._id}}" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
-                <span class="glyphicon glyphicon-play"></span>
             </a>
+            </div>
         </li>
     </ul>
 </div>
@@ -41,7 +41,6 @@
     <div class="container-fluid">
         <div class="active">
             <p class = "navbar-text pull-right">
-                <!--TODO-->
                 <a href= "#!/user/{{model.userId}}" >
                     <span class="glyphicon glyphicon-user pull-right"></span>
                 </a>

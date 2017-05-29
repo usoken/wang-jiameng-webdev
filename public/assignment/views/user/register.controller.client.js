@@ -24,7 +24,7 @@
                     var found = userService.findUserByUsername(username);
 
                     if(found !== null) {
-                        model.error = "Username is not available";
+                        vm.error = "Username has been taken";
                     } else {
                         var user = {
                             username: username,
