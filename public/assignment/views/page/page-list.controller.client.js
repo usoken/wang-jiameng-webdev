@@ -12,7 +12,7 @@
         vm.pageId = $routeParams['pid'];
 
         function init() {
-            pageService.findWidgetsByPageId(vm.websiteId).then(
+            pageService.findPagesByWebsiteId(vm.websiteId).then(
                 function (data) {
                     vm.pages = data;
         });
@@ -28,7 +28,7 @@
         vm.createPage = createPage;
 
         function init() {
-            pageService.findWidgetsByPageId(vm.websiteId).then(
+            pageService.findPagesByWebsiteId(vm.websiteId).then(
                 function (data) {
                     vm.pages = data;
                 });
