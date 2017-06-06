@@ -19,7 +19,7 @@
         init();
 
         function updateUser() {
-            userService.updateUser(model.user._id, model.user).then(
+            userService.updateUser(model.userId, model.user).then(
                 function() {
                     model.error = "Updated";
                 }
@@ -27,7 +27,7 @@
         }
         
         function deleteUser() {
-            userService.deleteUser(model.user._id).then(function () {
+            userService.deleteUser(model.userId).then(function () {
                 $location.url("/login/");
             });
 
