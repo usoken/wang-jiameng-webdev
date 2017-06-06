@@ -29,14 +29,18 @@
                 });
         }
 
-        function updateUser(userId, newUser) {
+        function updateUser(userId, User) {
             var url = "/api/user/" + userId;
-            $http.put(url, user);
+            var newUser = {
+                id: user,
+                User:User
+            };
+            return $http.put(url, newUser);
         }
 
         function deleteUser(userId) {
             var url = "/api/user/" + userId;
-            $http.put(url, user);
+            return $http.delete(url);
         }
 
         function findUserByCredentials(username, password) {
