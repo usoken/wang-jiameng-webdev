@@ -43,7 +43,7 @@
                 websiteId:vm.websiteId
 
             };
-            pageService.createWebsite(vm.websiteId, page);
+            pageService.createPage(vm.websiteId, page);
             $location.url('/user/'+model.userId+'/website/'+ vm.websiteId + '/page');
         }
     }
