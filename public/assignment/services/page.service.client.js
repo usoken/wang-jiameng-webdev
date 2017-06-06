@@ -4,15 +4,7 @@
         .factory('pageService', pageService);
 
 
-    function pageService() {
-
-        var pages = [
-
-                { "_id": "321", "name": "Post 1", "websiteId": "456", "title": "Lorem" },
-                { "_id": "432", "name": "Post 2", "websiteId": "456", "title": "Lorem" },
-                { "_id": "543", "name": "Post 3", "websiteId": "456", "title": "Lorem" }
-
-        ];
+    function pageService($http) {
 
         return {
             findPageById: findPageById,
@@ -23,44 +15,39 @@
         };
 
         function createPage(websiteId, page) {
-            page._id = (new Date()).getTime()+"";
+            var url = "/api/website/" + websiteId + "/page";
+            page._id = (new Date()).getTime() + "";
             page.websiteId = websiteId;
-            pages.push(page);
+            return $http.post(url, page).then(function (response) {
+                return response.data;
+            });
         }
 
         function findPagesByWebsiteId(websiteId) {
-            var result = [];
-            for (var p in pages) {
-                if (pages[p].websiteId === websiteId) {
-                    result.push(pages[p]);
+            var url = "/api/website/" + websiteId + "/page";
+            return $http.get(url).then(
+                function(response) {
+                    return response.data;
                 }
-            }
-            return result;
+            );
         }
 
         function findPageById(pageId) {
-            for (var p in pages) {
-                if (pages[p]._id === pageId) {
-                    return pages[p];
-                }
-            }
-            return null;
+            console.log(pageId);
+            var url = "/api/page/" + pageId;
+            return $http.get(url);
         }
 
         function updatePage(pageId, page) {
-            var p = pages.find(function (p) {
-                return p._id === pageId;
+            var url = "/api/page/" + pageId;
+            return $http.put(url, page).then(function (response) {
+                return response.data;
             });
-            p.name = page.name;
-            p.description = p.description;
         }
 
         function deletePage(pageId) {
-            var page = pages.find(function (page) {
-                return page._id === pageId;
-            });
-            var index = pages.indexOf(page);
-            pages.splice(index,1);
+            var url = "/api/page/" + pageId;
+            $http.delete(url);
         }
     }
 })();

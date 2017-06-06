@@ -12,7 +12,10 @@
         vm.pageId = $routeParams['pid'];
 
         function init() {
-            vm.pages = pageService.findPagesByWebsiteId(vm.websiteId);
+            pageService.findWidgetsByPageId(vm.websiteId).then(
+                function (data) {
+                    vm.pages = data;
+        });
         }
 
         init();
@@ -25,13 +28,23 @@
         vm.createPage = createPage;
 
         function init() {
-            vm.pages = pageService.findPagesByWebsiteId(vm.websiteId);
+            pageService.findWidgetsByPageId(vm.websiteId).then(
+                function (data) {
+                    vm.pages = data;
+                });
         }
         init();
 
         function createPage(page) {
-            pageService.createPage(vm.websiteId, page);
-            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
+
+            var website = {
+                _id : (new Date()).getTime()+"",
+                name:vm.name,
+                websiteId:vm.websiteId
+
+            };
+            pageService.createWebsite(vm.websiteId, page);
+            $location.url('/user/'+model.userId+'/website/'+ vm.websiteId + '/page');
         }
     }
 
@@ -44,18 +57,24 @@
         vm.deletePage = deletePage;
 
         function init() {
-            vm.page = pageService.findPageById(vm.pageId);
+            pageService.findPageById(vm.pageId).then(
+                function (res) {
+                    vm.page = res.data;
+                }
+            );
         }
         init();
 
         function updatePage() {
-            var result = pageService.updatePage(vm.pageId, vm.page);
-            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
+            pageService.updatePage(vm.pageId, vm.page).then(function () {
+                $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
+            });
         }
 
         function deletePage() {
-            pageService.deletePage(vm.pageId);
-            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
+            pageService.deletePage(vm.pageId).then(function () {
+                $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
+            });
         }
     }
 
