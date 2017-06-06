@@ -56,9 +56,6 @@
             var url = "/api/user/" + userId;
             console.log(userId);
             return $http.get(url);
-            //     .then(function (response) {
-            //     return response.data;
-            // });
         }
     }
 })();

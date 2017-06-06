@@ -24,7 +24,7 @@
 
         function updateWebsite(websiteId, Website) {
             var url = "/api/website/" + websiteId;
-            return $http.put(url, website).then(function (response) {
+            return $http.put(url, Website).then(function (response) {
                 return response.data;
             });
         }
