@@ -12,8 +12,9 @@
         model.deleteUser = deleteUser;
 
         function init() {
-            model.user = userService.findUserById(userId);
-            console.log(userId);
+            userService.findUserById(userId).then(function (res) {
+                model.user = res.data;
+            });
         }
         init();
 
