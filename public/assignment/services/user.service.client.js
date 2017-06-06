@@ -40,7 +40,7 @@
 
         function deleteUser(userId) {
             var url = "/api/user/" + userId;
-            $http.delete(url);
+            return $http.delete(url);
         }
 
         function findUserByCredentials(username, password) {
