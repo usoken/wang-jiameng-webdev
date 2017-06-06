@@ -17,8 +17,16 @@
         vm.deleteWebsite = deleteWebsite;
 
         function init() {
-            vm.websites = websiteService.findWebsitesByUser(vm.userId);
-            vm.website = websiteService.findWebsiteById(vm.websiteId);
+            websiteService.findWebsitesByUser(vm.userId).then(
+                function (data) {
+                    model.websites = data;
+                }
+            );
+            websiteService.findWebsiteById(vm.websiteId).then(
+                function (data) {
+                    model.websites = data;
+                }
+            );
         }
         init();
 

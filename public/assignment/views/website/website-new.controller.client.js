@@ -12,7 +12,11 @@
         model.createWebsite = createWebsite;
 
         function init() {
-            model.websites = websiteService.findWebsitesByUser(model.userId)
+            websiteService.findWebsitesByUser(model.userId).then(
+                function (data) {
+                    model.websites = data;
+                }
+            )
         }
         init();
 
@@ -23,7 +27,6 @@
                 developerId:model.userId
 
             };
-            // website.developerId = model.userId;
             websiteService.createWebsite(model.userId, website);
             $location.url('/user/'+model.userId+'/website/');
         }
