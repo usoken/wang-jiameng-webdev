@@ -18,16 +18,17 @@
 
         function init() {
             websiteService.findWebsiteById(vm.websiteId).then(
-                function (data) {
-                    vm.websites = data;
+                function (res) {
+                    vm.website = res.data;
                 }
             );
         }
         init();
 
         function updateWebsite(website) {
-            websiteService.updateWebsite (vm.websiteId, website);
-            $location.url("/user/" + vm.userId + "/website/");
+            websiteService.updateWebsite (vm.websiteId, website).then(function () {
+                $location.url("/user/" + vm.userId + "/website/");
+            });
         }
 
         function deleteWebsite() {
