@@ -3,7 +3,7 @@
         .module('WebAppMaker')
         .factory('websiteService', websiteService);
 
-    function websiteService() {
+    function websiteService($http) {
 
         return {
             createWebsite: createWebsite,
