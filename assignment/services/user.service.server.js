@@ -57,6 +57,7 @@ module.exports = function (app) {
 
     function updateUser(req, res) {
         var userId = req.params["userId"];
+        console.log(userId);
         var user = users.find(function (user) {
             return user._id === userId;
         });
@@ -70,6 +71,7 @@ module.exports = function (app) {
 
     function deleteUser(req, res) {
         var userId = req.params["userId"];
+        console.log(userId);
         var user = users.find(function (user) {
             return user._id === userId;
         });
