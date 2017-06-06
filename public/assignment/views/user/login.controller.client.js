@@ -8,7 +8,7 @@
         vm.login = function (username, password) {
             userService.findUserByCredentials(username, password).then(login);
             function login(found) {
-                if(found !== null) {
+                if(found !== "0") {
                     $location.url('/user/' + found._id);
                 } else {
                     vm.message = "Username " + username + " not found, please try again";
