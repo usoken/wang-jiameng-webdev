@@ -6,7 +6,7 @@
                 Profile
             </a>
                 <p class="navbar-text pull-right" aria-expanded="false">
-                    <a href="" ng-click="model.updateUser()">
+                    <a ng-click="model.updateUser()">
                         <span class="glyphicon glyphicon-ok">
                         </span>
                     </a>
@@ -45,8 +45,10 @@
         <a href="#!/user/{{model.user._id}}/website"
            class="btn btn-block btn-primary">Website</a>
 
-        <a href="#!/login" class="btn btn-block btn-danger">Delete</a>
-        <a ng-click="deleteUser()" class="btn btn-block btn-default">Logout</a>
+        <a ng-click="deleteUser()" class="btn btn-block btn-danger">Delete</a>
+        <a href="#!/login" class="btn btn-block btn-default">Logout</a>
+
+
     </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
