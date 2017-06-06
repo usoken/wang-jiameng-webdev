@@ -49,16 +49,15 @@ module.exports = function (app) {
     }
 
     function updateWebsite(req, res) {
-        var websiteId = req.params["websiteId"];
-        var website= websites.find(function (website) {
-            return website._id === websiteId;
-        });
-        var index = websites.indexOf(website);
-        websites.splice(index, 1);
-        var newWeb = req.body;
-        newWeb._id = websiteId;
-        websites.splice(index, 0, newWeb);
-        res.json(websites);
+        var website = req.body;
+        var websiteId = req.params.websiteId;
+        for (var v in websites) {
+            if (websites[v]._id === websiteId) {
+                websites[v] = website;
+                res.sendStatus(200);
+                return;
+            }
+        }
     }
 
     function deleteWebsite(req, res) {
