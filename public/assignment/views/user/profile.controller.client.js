@@ -20,12 +20,15 @@
         function updateUser() {
             userService.updateUser(model.user._id, model.user).then(
                 function() {
-                    model.message = "Updated";
+                    model.error = "Updated";
                 }
-            )
+            );
         }
         
         function deleteUser() {
+            userService.deleteUser(model.user._id).then(function () {
+                $location.url("/login/");
+            });
 
         }
 
