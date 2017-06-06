@@ -8,12 +8,23 @@
         var model = this;
         var userId = $routeParams['uid'];
 
-        model.user = userService.findUserById(userId);
+        model.updateUser = updateUser;
+        model.deleteUser = deleteUser;
+
         function init() {
             model.user = userService.findUserById(userId);
             console.log(userId);
         }
         init();
+
+        function updateUser() {
+            userService
+        }
+        
+        function deleteUser() {
+
+        }
+
 
     }
 })();
