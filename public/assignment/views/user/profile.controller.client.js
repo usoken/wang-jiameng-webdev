@@ -18,7 +18,11 @@
         init();
 
         function updateUser() {
-            userService
+            userService.updateUser(model.user._id, model.user).then(
+                function() {
+                    model.message = "Updated";
+                }
+            )
         }
         
         function deleteUser() {
