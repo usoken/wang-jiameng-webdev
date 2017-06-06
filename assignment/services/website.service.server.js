@@ -33,7 +33,7 @@ module.exports = function (app) {
                 resultSet.push(websites[w]);
             }
         }
-        res.send(resultSet);
+        res.json(resultSet);
     }
 
     function findWebsiteById(req, res) {

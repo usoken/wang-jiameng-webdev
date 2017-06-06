@@ -17,12 +17,16 @@
             var url = "/api/user/" + userId + "/website";
             website._id = (new Date()).getTime() + "";
             website.developerId = userId;
-            $http.post(url, website);
+            return $http.post(url, website).then(function (response) {
+                return response.data;
+            });
         }
 
         function updateWebsite(websiteId, Website) {
             var url = "/api/website/" + websiteId;
-            $http.put(url, website);
+            return $http.put(url, website).then(function (response) {
+                return response.data;
+            });
         }
 
         function deleteWebsite(websiteId) {
