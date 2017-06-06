@@ -32,7 +32,7 @@
         function updateUser(userId, User) {
             var url = "/api/user/" + userId;
             var newUser = {
-                id: user,
+                id: userId,
                 User:User
             };
             return $http.put(url, newUser);
