@@ -22,17 +22,9 @@
     </div>
 </nav>
 
+<div ng-include="model.getTemplate(model.widget.widgetType)"></div>
+
 <div class = "container" scrolling="yes">
-    <div  ng-switch="widget.widgetType" >
-        <div  ng-switch-when="HEADING" >
-        <ng-include  src="'../widget-heading-edit.view.client.html'"/></div>
-        <div  ng-switch-when="IMAGE" >
-            <ng-include  src="'../widget-image-edit.view.client.html'"/>
-        </div>
-        <div  ng-switch-when="YOUTUBE" >
-            <ng-include  src="'widget-youtube-edit.view.client.html'"/>
-        </div>
-    </div>
     <a class="btn btn-primary  btn-block"
        ng-click="model.updateWidget()">Update</a>
     <a class="btn btn-danger  btn-block"
@@ -40,13 +32,4 @@
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="active">
-            <p class = "navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}">
-                    <span class="glyphicon glyphicon-user pull-right"></span>
-                </a>
-            </p>
-        </div>
-    </div>
 </nav>
