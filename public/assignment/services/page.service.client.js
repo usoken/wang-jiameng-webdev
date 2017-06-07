@@ -40,9 +40,11 @@
 
         function updatePage(pageId, page) {
             var url = "/api/page/" + pageId;
-            return $http.put(url, page).then(function (response) {
-                return response.data;
-            });
+            return $http.put(url, page);
+            //     .then(function (response) {
+            //     return response.data;
+            //
+            // });
         }
 
         function deletePage(pageId) {

@@ -68,7 +68,7 @@
         function updatePage(page) {
             pageService.updatePage(vm.pageId, page);
                 $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/");
-           
+
         }
 
         function deletePage() {
