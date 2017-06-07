@@ -17,7 +17,7 @@ module.exports = function (app) {
     function createUser(req, res) {
         var user = req.body;
         users.push(user);
-        // res.json(users);
+        res.json(users);
     }
 
 
