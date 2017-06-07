@@ -35,7 +35,7 @@
         }
 
         function findWebsiteById(websiteId) {
-            console.log(websiteId);;
+            console.log(websiteId);
             var url = "/api/website/" + websiteId;
             return $http.get(url);
         }

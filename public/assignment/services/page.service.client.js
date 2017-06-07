@@ -38,13 +38,13 @@
             return $http.get(url);
         }
 
-        function updatePage(pageId, page) {
+        function updatePage(pageId, Page) {
             var url = "/api/page/" + pageId;
-            return $http.put(url, page);
-            //     .then(function (response) {
-            //     return response.data;
-            //
-            // });
+            return $http.put(url, Page)
+                .then(function (response) {
+                return response.data;
+
+            });
         }
 
         function deletePage(pageId) {

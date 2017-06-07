@@ -16,7 +16,9 @@
         vm.widgetId = $routeParams['wgid'];
 
         function init() {
-            vm.widgets = widgetService.findWidgetsByPageId(vm.pageId);
+            widgetService.findWidgetsByPageId(vm.pageId).then(function (widgets) {
+               vm.widgets = widgets;
+            });
         }
         init();
 
@@ -42,19 +44,22 @@
         vm.createWidget = createWidget;
 
         function init() {
-            vm.widgets = widgetService.findWidgetsByPageId(vm.pageId);
+            widgetService.findWidgetsByPageId(vm.pageId).then(function (widgets) {
+                vm.widgets = widgets;
+            })
         }
         init();
 
         function createWidget(widgetType) {
             var newWidget = {
-                _id: (new Date()).getTime(),
+                _id: (new Date()).getTime()+"",
                 name: "",
                 widgetType: widgetType,
                 pageId: vm.pageId
             };
             widgetService.createWidget(vm.pageId, newWidget);
             $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + newWidget._id);
+            return newWidget;
         }
     }
 
@@ -69,25 +74,41 @@
         vm.getTemplate = getTemplate;
 
         function init() {
-            vm.widget = widgetService.findWidgetById(vm.widgetId);
-            vm.widgets = widgetService.findWidgetsByPageId(vm.pageId);
+            widgetService.findWidgetById(vm.widgetId).then(function (widgets) {
+                vm.widgets = widgets;
+            });
+            widgetService.findWidgetsByPageId(vm.pageId).then(function (widgets) {
+                vm.widgets = widgets;
+            });
             console.log(vm.widget)
         }
         init();
 
         function getTemplate(widgetType) {
-            var template = 'views/widget/templates/widget-' + vm.widget.widgetType.toLowerCase() + '.html';
+            if (widgetType === "HEADING") {
+                var template = 'views/widget/widget-heading.view.client.html';
+            }
+            if (widgetType === "IMAGE") {
+                var template = 'views/widget/widget-image.view.client.html';
+            }
+            if (widgetType === "YOUTUBE") {
+                var template = 'views/widget/widget-youtube.view.client.html';
+            }
+
             return template;
         }
 
         function deleteWidget() {
-            widgetService.deleteWidget(vm.widgetId);
-            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + /widget/);
+            widgetService.deleteWidget(vm.widgetId).then(function () {
+                $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + /widget/);
+            });
         }
 
         function updateWidget() {
-            var result = widgetService.updateWidget(vm.widgetId, vm.widget);
-            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + /widget/);
+            widgetService.updateWidget(vm.widgetId, vm.widget).then(function () {
+                $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + /widget/);
+            });
+
         }
     }
 })();

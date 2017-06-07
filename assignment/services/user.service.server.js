@@ -16,7 +16,10 @@ module.exports = function (app) {
 
     function createUser(req, res) {
         var user = req.body;
-        users.push(user);}
+        users.push(user);
+        // res.json(users);
+    }
+
 
     function findUserByUsername(req, res) {
         var username = req.query["username"];
