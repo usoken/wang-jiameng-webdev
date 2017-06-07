@@ -59,14 +59,14 @@
         function init() {
             pageService.findPageById(vm.pageId).then(
                 function (res) {
-                    vm.page = res;
+                    vm.page = res.data;
                 }
             );
         }
         init();
 
-        function updatePage() {
-            pageService.updatePage(vm.pageId, vm.page).then(function () {
+        function updatePage(page) {
+            pageService.updatePage(vm.pageId, page).then(function () {
                 $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
             });
         }
