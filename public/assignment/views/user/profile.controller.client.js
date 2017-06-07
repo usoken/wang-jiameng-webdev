@@ -28,7 +28,7 @@
         
         function deleteUser() {
             userService.deleteUser(model.userId);
-                $location.url("/");
+                $location.url("/login");
 
         }
 
