@@ -67,7 +67,7 @@
 
         function updatePage(page) {
             pageService.updatePage(vm.pageId, page).then(function () {
-                $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/");
             });
         }
 
