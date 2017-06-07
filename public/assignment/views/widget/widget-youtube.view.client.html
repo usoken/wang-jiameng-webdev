@@ -2,22 +2,24 @@
 
     <label for="name">Name</label>
     <input id="name"
-           ng-model="name"
+           ng-model="model.widget.name"
            class="form-control"/>
 
     <label for="text">Text</label>
     <input id="text"
+           ng-model="model.widget.text"
            ng-model="text"
            class="form-control"
            />
     <label for="size">URL</label>
     <input id="size"
-           ng-model="url"
+           type="url"
+           ng-model="model.widget.url"
            class="form-control"
-           value="https://youtu.be/Aaq3Ah4oNAE"/>
+           />
 
-    <label for="name">Width</label>
-    <input ng-model = "width"
+    <label for="width">Width</label>
+    <input ng-model = "model.widget.width"
            id="width"
            class="form-control"/>
 

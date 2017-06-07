@@ -2,34 +2,46 @@
 
 <div class="container-fluid">
 
+    <div>
     <label for="name">Name</label>
     <input id="name"
-           ng-model="name"
+           type="text"
+           ng-model="model.widget.name"
            class="form-control"/>
+    </div>
 
+    <div class="from-group">
     <label for="text">Text</label>
     <input id="text"
-           ng-model="text"
+           ng-model="model.widget.text"
            class="form-control"
     />
-    <label for="size">URL</label>
-    <input id="size"
-           ng-model = "url"
-           class="form-control"
-           value="https://i.kinja-img.com/gawker-media/image/upload/s--kQW-rqr0--/c_scale,fl_progressive,q_80,w_800/peyikndaxktdvxzynsb5.jpg"/>
+    </div>
 
-    <label for="name">Width</label>
+    <div>
+    <label for="url">URL</label>
+    <input id="url"
+           ng-model = "model.widget.url"
+           class="form-control"
+           type="url"/>
+        </div>
+
+    <div>
+    <label for="width">Width</label>
     <input id="width"
-           ng-model = "width"
-           class="form-control"
-    value="100%"/>
+           type="text"
+           ng-model = "model.widget.width"
+           class="form-control" value="100%"/>
+    </div>
 
+    <div><
     <label for="file">File Upload</label>
     <input id="file"
            multiple
            type="file"
            class="form-control"/>
 
+        </div>
 
 </div>
 
