@@ -2,7 +2,7 @@
     angular
         .module("WebAppMaker")
         .factory("widgetService", widgetService);
-    function widgetService($http,$routeParams) {
+    function widgetService($http) {
         return {
             findWidgetsByPageId: findWidgetsByPageId,
             findWidgetById:findWidgetById,
