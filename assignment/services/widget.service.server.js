@@ -27,7 +27,7 @@ module.exports = function (app) {
         var size = myFile.size;
         var mimetype = myFile.mimetype;
 
-        widget = getWidgetById(widgetId);
+        var widget = getWidgetById(widgetId)
         widget.url = '/uploads/' + filename;
 
         var callbackUrl = "/assignment/index.html#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
@@ -36,9 +36,12 @@ module.exports = function (app) {
     }
 
     function getWidgetById(widgetId) {
-        var widget = widgets.find(function (widget) {
-            return widget._id === widgetId;
-        });
+        for (var w in widgets) {
+            var widget = widgets[w];
+            if (widget._id === widgetId) {
+                return widget;
+            }
+        }
     }
     var widgets = [
         { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
