@@ -66,7 +66,7 @@
         init();
 
         function updatePage() {
-            pageService.updatePage(vm.pageId, page).then(function () {
+            pageService.updatePage(vm.pageId, vm.page).then(function () {
                 $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
             });
         }
