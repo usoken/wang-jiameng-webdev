@@ -72,9 +72,9 @@
         }
 
         function deletePage() {
-            pageService.deletePage(vm.pageId).then(function () {
-                $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
-            });
+            pageService.deletePage(vm.pageId);
+            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
+
         }
     }
 
