@@ -2,7 +2,7 @@
     angular
         .module("WebAppMaker")
         .controller("WidgetListController", WidgetListController)
-        .controller("WidgetChooserController", WidgetChooserController)
+        .controller("NewWidgetController", NewWidgetController)
         .controller("EditWidgetController", EditWidgetController);
 
     function WidgetListController($sce, $routeParams, widgetService) {
@@ -35,7 +35,7 @@
         }
     }
 
-    function WidgetChooserController($location, $routeParams, widgetService) {
+    function NewWidgetController($location, $routeParams, widgetService) {
         var vm = this;
         vm.userId = $routeParams['uid'];
         vm.websiteId = $routeParams['wid'];
