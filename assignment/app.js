@@ -19,9 +19,9 @@ module.exports = function(app) {
     }
 
     try {
-        mongoose.connect('mongodb://127.0.0.1/test'); //- starting a db connection
+        mongoose.connect('mongodb://127.0.0.1:27017/test'); //- starting a db connection
     }catch(err) {
-        mongoose.createConnection('mongodb://127.0.0.1/test'); //- starting another db connection
+        mongoose.createConnection('mongodb://127.0.0.1:27017/test'); //- starting another db connection
     }
 
 };

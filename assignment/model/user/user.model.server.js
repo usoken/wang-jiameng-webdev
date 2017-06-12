@@ -11,6 +11,16 @@ module.exports = function () {
 
     module.exports = userModel;
 
+    return {
+        createUser: createUser,
+        findUserByCredentials: findUserByCredentials,
+        findUserByUsername: findUserByUsername,
+        findUserById: findUserById,
+        updateUser: updateUser,
+        deleteUser: deleteUser
+    };
+
+
     function updateUser(userId, newUser) {
         delete newUser.username;
         return userModel.update({_id: userId}, {
@@ -35,10 +45,14 @@ module.exports = function () {
         return userModel.findById(userId);
     }
 
+    userModel.collection.insert({
+        username:"alice",
+        password:"alice"
+    });
     function createUser(user) {
         return userModel.create(user);
     }
-    
+
     function findUserByUsername(userName) {
         return userModel.findOne({
            userName: userName

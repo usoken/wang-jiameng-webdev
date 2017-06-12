@@ -24,7 +24,7 @@
                     var found = userService.findUserByUsername(username).then(
                       function (data) {
                           var found = data;
-                          if(found !== "0") {
+                          if(found !== null) {
                               vm.error = "Username has been taken";
                           } else {
                               var id = (new Date()).getTime() + "";
