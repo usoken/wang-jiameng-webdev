@@ -1,4 +1,6 @@
-module.exports = function (app) {
+module.exports = function (app, models) {
+    var userModel = models.userModel;
+
     app.post("/api/user", createUser);
     app.get("/api/user", findUserByUsername);
     app.get("/api/user", findUserByCredentials);
@@ -16,20 +18,17 @@ module.exports = function (app) {
 
     function createUser(req, res) {
         var user = req.body;
-        users.push(user);
-        res.json(users);
+        userModel.createUser(user).then(function (user) {
+            res.json(user);
+        })
     }
 
 
     function findUserByUsername(req, res) {
         var username = req.query["username"];
-        for (var u in users) {
-            if (users[u].username === username) {
-                res.json(users[u]);
-                return;
-            }
-        }
-        res.send("0");
+        userModel.findUserByUsername(username).then(function (user) {
+           res.json(user);
+        });
     }
 
     function findUserByCredentials (req, res) {
@@ -47,40 +46,29 @@ module.exports = function (app) {
     }
 
     function findUserById(req,res) {
-        var userId = req.params["userId"];
-        for (var u in users) {
-            var user = users[u];
-            if (user._id === userId) {
-                res.json(user);
-                return;
-            }
-        }
-        res.send("0");
+        var userId = req.query["userId"];
+        userModel.findUserById(userId).then(function (user) {
+            res.json(user);
+        });
      }
 
     function updateUser(req, res) {
-        var userId = req.params["userId"];
-        console.log(userId);
-        var user = users.find(function (user) {
-            return user._id === userId;
-        });
-        var index = users.indexOf(user);
-        users.splice(index, 1);
-        var newUser = req.body;
-        newUser._id = userId;
-        users.splice(index,0, newUser);
-        res.json(users);
+        var user = req.body;
+        var userId = req.params.userId;
+
+        userModel.updateUser(userId,user).then(
+            function (status) {
+                res.sendStatus(200);
+            }
+        );
     }
 
     function deleteUser(req, res) {
         var userId = req.params["userId"];
         console.log(userId);
-        var user = users.find(function (user) {
-            return user._id === userId;
+        userModel.deleteUser(userId).then(function (status) {
+           res.sendStatus(200);
         });
-        var index = users.indexOf(user);
-        users.splice(index, 1);
-        res.json(users);
     }
 
 
