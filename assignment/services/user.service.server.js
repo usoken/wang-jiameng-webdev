@@ -7,14 +7,15 @@ module.exports = function (app, models) {
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
-    //
-    // var users = [
-    //     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
-    //     {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
-    //     {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
-    //     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
-    // ];
-    //
+
+    return {
+        createUser: createUser,
+        findUserByUsername: findUserByUsername,
+        findUserByCredentials: findUserByCredentials,
+        findUserById: findUserById,
+        updateUser: updateUser,
+        deleteUser:deleteUser
+    };
 
     function createUser(req, res) {
         var user = req.body;
@@ -27,7 +28,7 @@ module.exports = function (app, models) {
     function findUserByUsername(req, res) {
         var username = req.query["username"];
         userModel.findUserByUsername(username).then(function (user) {
-           res.json(user);
+            res.json(user);
         });
     }
 
@@ -46,29 +47,26 @@ module.exports = function (app, models) {
         userModel.findUserById(userId).then(function (user) {
             res.json(user);
         });
-     }
+    }
 
     function updateUser(req, res) {
         var user = req.body;
-        var userId = req.params.userId;
+        var userId = req.params["userId"];
 
         userModel.updateUser(userId,user).then(
             function (status) {
-                res.sendStatus(200);
+                res.sendStatus(status);
             }
         );
     }
 
+
     function deleteUser(req, res) {
         var userId = req.params["userId"];
-        console.log(userId);
         userModel.deleteUser(userId).then(function (status) {
-           res.sendStatus(200);
+            res.send(status);
         });
     }
-
-
-
 
 };
 

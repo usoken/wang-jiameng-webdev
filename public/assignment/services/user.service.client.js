@@ -1,4 +1,3 @@
-
 (function () {
     angular
         .module('WebAppMaker')
@@ -17,11 +16,12 @@
 
         function createUser(user) {
             var url = "/api/user";
-            $http.post(url, user);
+            return $http.post(url, user);
         }
 
-        function findUserByUsername(username) {
-            var url = "/api/user?username=" + username;
+
+        function findUserByCredentials(username, password) {
+            var url = "/api/assignment/user?username=" + username + "&password=" + password;
             return $http
                 .get(url)
                 .then(function (response) {
@@ -29,13 +29,27 @@
                 });
         }
 
-        function updateUser(userId, User) {
+        function findUserById(userId) {
             var url = "/api/user/" + userId;
-            var newUser = {
+            return $http.get(url);
+        }
+
+        function findUserByUsername(username) {
+            var url = "/api/user?username=" + username;
+            return $http
+                .get(url)
+                .then(function (res) {
+                    return res.data;
+                });
+        }
+
+        function updateUser(userId, user) {
+            var url = "/api/user/" + userId;
+            var update = {
                 id: userId,
-                User:User
+                user: user
             };
-            return $http.put(url, newUser);
+            return $http.put(url, update);
         }
 
         function deleteUser(userId) {
@@ -43,19 +57,5 @@
             return $http.delete(url);
         }
 
-        function findUserByCredentials(username, password) {
-            var url = "/api/assignment/user?username=" + username + "&&password=" + password;
-            return $http.get(url).then(
-                function(response) {
-                    return response.data;
-                }
-            );
-        }
-
-        function findUserById(userId) {
-            var url = "/api/user/" + userId;
-            console.log(userId);
-            return $http.get(url);
-        }
     }
 })();

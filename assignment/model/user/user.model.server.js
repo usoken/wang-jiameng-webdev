@@ -45,17 +45,13 @@ module.exports = function () {
         return userModel.findById(userId);
     }
 
-    userModel.collection.insert({
-        username:"alice",
-        password:"alice"
-    });
     function createUser(user) {
         return userModel.create(user);
     }
 
     function findUserByUsername(userName) {
         return userModel.findOne({
-           userName: userName
+            userName: userName
         });
     }
 

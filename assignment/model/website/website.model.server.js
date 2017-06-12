@@ -10,6 +10,14 @@ module.exports = function () {
 
     module.exports = websiteModel;
 
+    return {
+        createWebsite: createWebsite,
+        findAllWebsitesForUser: findAllWebsitesForUser,
+        findWebsiteById: findWebsiteById,
+        deleteWebsite: deleteWebsite,
+        updateWebsite: updateWebsite
+    };
+
     function createWebsite(website) {
         return websiteModel.create(website);
     }

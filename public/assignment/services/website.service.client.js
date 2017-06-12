@@ -15,8 +15,11 @@
 
         function createWebsite(userId,website) {
             var url = "/api/user/" + userId + "/website";
-            website._id = (new Date()).getTime() + "";
-            website.developerId = userId;
+            var website = {
+                userId: userId,
+                website: website
+            };
+
             return $http.post(url, website).then(function (response) {
                 return response.data;
             });
@@ -41,6 +44,7 @@
         }
 
         function findWebsitesByUser(userId) {
+            console.log(userId);
             var url = "/api/user/" + userId + "/website";
             return $http.get(url).then(
                 function(response) {
