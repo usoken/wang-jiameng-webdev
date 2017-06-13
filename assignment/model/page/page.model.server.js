@@ -17,10 +17,7 @@ module.exports = function () {
         findPagesByWebsiteId: findPagesByWebsiteId,
         updatePage: updatePage,
         findPageById: findPageById,
-        deletePage: deletePage,
-
-        addWidgetToArray: addWidgetToArray,
-        deleteWidgetFromArray: deleteWidgetFromArray
+        deletePage: deletePage
     };
 
     function createPage(page) {
