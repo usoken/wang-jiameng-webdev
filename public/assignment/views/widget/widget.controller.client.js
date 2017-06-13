@@ -48,6 +48,7 @@
         vm.createWidget = createWidget;
 
         function init() {
+            console.log("new");
             widgetService
                 .findWidgetsByPageId(vm.pageId)
                 .then(function (data) {
@@ -66,9 +67,8 @@
             widgetService
                 .createWidget(vm.pageId, newWidget)
                 .then(function (res) {
-                    var widget = res.data;
-                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widget._id);
-                    return widget;
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + res.data._id);
+                    return res.data;
                 });
         }
     }
@@ -85,6 +85,7 @@
         vm.getTemplate = getTemplate;
 
         function init() {
+            console.log("edit");
             widgetService
                 .findWidgetsByPageId(vm.pageId)
                 .then(function (widgets) {
@@ -130,13 +131,12 @@
         function updateWidget() {
             console.log(vm.widget);
             widgetService.updateWidget(vm.widgetId, vm.widget);
-            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + /widget/);
+            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget/');
         }
     }
 
-    function FlickrImageSearchController($location, $routeParams, widgetService, FlickrService) {
+    function FlickrImageSearchController($sce, $routeParams, widgetService, FlickrService) {
         var vm = this;
-
         vm.userId = $routeParams['uid'];
         vm.websiteId = $routeParams['wid'];
         vm.pageId = $routeParams['pid'];
@@ -147,13 +147,14 @@
 
         function init() {
             widgetService
-                .findWidgetById(vm.websiteId)
-                .then(function (widget) {
-                    vm.widget = widget;
+                .findWidgetsByPageId(vm.pageId)
+                .then(function (widgets) {
+                    vm.widgets = widgets;
                 });
         }
-
         init();
+
+
 
         function searchPhotos(searchTerm) {
             FlickrService
@@ -165,6 +166,7 @@
                     vm.photos = data.photos;
                 });
         }
+
 
         function selectPhoto(photo) {
             var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
@@ -185,5 +187,10 @@
                     $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget/' + vm.widgetId);
                 });
         }
+
     }
+
+
+
+
 })();

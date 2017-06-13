@@ -22,9 +22,6 @@ module.exports = function (app, models) {
             .then(
                 function (page) {
                     res.sendStatus(200);
-                },
-                function (err) {
-                    // res.status(400).send(err);
                 }
             );
     }
@@ -68,9 +65,6 @@ module.exports = function (app, models) {
             .deletePage(pageId)
             .then(function (status) {
                     res.json(200);
-                },
-                function (err) {
-                    res.status(404).send(err);
                 }
             );
     }

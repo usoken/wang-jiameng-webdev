@@ -1,11 +1,11 @@
 module.exports = function (app, models) {
     var widgetModel = models.widgetModel;
 
-    app.get("/api/page/:pageId/widget", findWidgetsByPageId);
-    app.post("/api/page/:pageId/widget", createWidget);
-    app.get("/api/widget/:widgetId", findWidgetById);
-    app.put("/api/widget/:widgetId", updateWidget);
-    app.delete("/api/widget/:widgetId", deleteWidget);
+    app.get('/api/page/:pageId/widget', findWidgetsByPageId);
+    app.post('/api/page/:pageId/widget', createWidget);
+    app.get('/api/widget/:widgetId', findWidgetById);
+    app.put('/api/widget/:widgetId', updateWidget);
+    app.delete('/api/widget/:widgetId', deleteWidget);
     app.put('/api/page/:pageId/widget', reorderWidget);
 
     function createWidget(req, res) {
@@ -24,7 +24,7 @@ module.exports = function (app, models) {
     }
 
     function findWidgetsByPageId(req, res) {
-
+        console.log("list");
         var pageId = req.params['pageId'];
 
         widgetModel
@@ -53,10 +53,6 @@ module.exports = function (app, models) {
                         res.json(widgetList);
                     })
             });
-
-        // widgetModel.findWidgetsByPageId(pageId).then(function (widgets) {
-        //     res.json(widgets);
-        // })
     }
 
     function findWidgetById(req, res) {
@@ -115,6 +111,7 @@ module.exports = function (app, models) {
     app.post("/api/upload", upload.single('myFile'), uploadImage);
 
     function uploadImage(req, res) {
+        console.log(">>>>>>>>>>>");
         var userId = req.body.userId;
         var websiteId = req.body.websiteId;
         var pageId = req.body.pageId;
