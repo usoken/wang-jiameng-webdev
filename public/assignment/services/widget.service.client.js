@@ -25,10 +25,10 @@
         function findWidgetsByPageId(pageId) {
             var url = "/api/page/" + pageId + "/widget";
             return $http
-                .get(url);
-                // .then(function (response) {
-                //     return response.data;
-                // });
+                .get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function createWidget(pageId, widget) {

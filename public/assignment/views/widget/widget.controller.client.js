@@ -155,7 +155,7 @@
         }
     }
 
-    function FlickrImageSearchController($sce, $routeParams, widgetService, flickrService) {
+    function FlickrImageSearchController($location, $routeParams, widgetService, flickrService) {
         var vm = this;
         vm.userId = $routeParams['uid'];
         vm.websiteId = $routeParams['wid'];
