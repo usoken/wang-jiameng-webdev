@@ -20,90 +20,85 @@
     </div>
 </nav>
 
-<div class="container-fluid" wd-draggable>
-    <ul ng-repeat="widget in model.widgets">
-        <ui ng-include="model.getTemplate(widget.widgetType)"></ui>
+
+<div class="container-fluid">
+    <ul ng-repeat="widget in model.widgets"
+        ng-switch="widget.widgetType">
+        <li ng-switch-when="HEADING" class="wd-content">
+            <div class="wd-widget">
+                <div class="wd-toolbar">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </div>
+            </div>
+
+        </li>
+
+        <li ng-switch-when="IMAGE" class="wd-content">
+            <div class="wd-widget">
+                <div class="wd-toolbar">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </div>
+            </div>
+            <div>
+                <img ng-src="{{widget.url}}" width="{{widget.width}}"/>
+            </div>
+        </li>
+
+
+
+        <li ng-switch-when="YOUTUBE" class="wd-content">
+            <div class="wd-widget">
+                <div class="wd-toolbar">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </div>
+
+                <div class = "video-container">
+                    <iframe  width="{{widget.width}}" ng-src="{{model.getUrl(widget)}}" frameborder="0" allowfullscreen class="video"></iframe>
+                </div>
+            </div>
+
+        <li ng-switch-when="HTML" class="wd-content">
+            <div class="wd-widget">
+                <div class="wd-toolbar">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                    <a href="">
+                        <span class="glyphicon glyphicon-align-justify"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div ng-bind-html="model.getHtml(widget)">
+            </div>
+        </li>
+
+
+        <li ng-switch-default class="wd-content">
+            <div class="wd-widget">
+                <div class="wd-toolbar">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </div>
+            </div>
+
+            <div>
+                {{widget}}
+            </div>
+        </li>
     </ul>
 </div>
-
-<!--<div class="container-fluid">-->
-    <!--<ul ng-repeat="widget in model.widgets"-->
-        <!--ng-switch="widget.widgetType">-->
-        <!--<li ng-switch-when="HEADING" class="wd-content">-->
-            <!--<div class="wd-widget">-->
-                <!--<div class="wd-toolbar">-->
-                    <!--<a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">-->
-                        <!--<span class="glyphicon glyphicon-cog"></span>-->
-                    <!--</a>-->
-                    <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-                <!--</div>-->
-            <!--</div>-->
-
-        <!--</li>-->
-
-        <!--<li ng-switch-when="IMAGE" class="wd-content">-->
-            <!--<div class="wd-widget">-->
-                <!--<div class="wd-toolbar">-->
-                    <!--<a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">-->
-                        <!--<span class="glyphicon glyphicon-cog"></span>-->
-                    <!--</a>-->
-                    <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div>-->
-                <!--<img ng-src="{{widget.url}}" width="{{widget.width}}"/>-->
-            <!--</div>-->
-        <!--</li>-->
-
-
-
-        <!--<li ng-switch-when="YOUTUBE" class="wd-content">-->
-            <!--<div class="wd-widget">-->
-                <!--<div class="wd-toolbar">-->
-                    <!--<a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">-->
-                        <!--<span class="glyphicon glyphicon-cog"></span>-->
-                    <!--</a>-->
-                    <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-                <!--</div>-->
-
-                <!--<div class = "video-container">-->
-                    <!--<iframe  width="{{widget.width}}" ng-src="{{model.getUrl(widget)}}" frameborder="0" allowfullscreen class="video"></iframe>-->
-                <!--</div>-->
-            <!--</div>-->
-
-        <!--<li ng-switch-when="HTML" class="wd-content">-->
-            <!--<div class="wd-widget">-->
-                <!--<div class="wd-toolbar">-->
-                    <!--<a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">-->
-                        <!--<span class="glyphicon glyphicon-cog"></span>-->
-                    <!--</a>-->
-                    <!--<a href="">-->
-                        <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-                    <!--</a>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div ng-bind-html="model.getHtml(widget)">-->
-            <!--</div>-->
-        <!--</li>-->
-
-
-        <!--<li ng-switch-default class="wd-content">-->
-            <!--<div class="wd-widget">-->
-                <!--<div class="wd-toolbar">-->
-                    <!--<a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">-->
-                        <!--<span class="glyphicon glyphicon-cog"></span>-->
-                    <!--</a>-->
-                    <!--<span class="glyphicon glyphicon-align-justify"></span>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div>-->
-                <!--{{widget}}-->
-            <!--</div>-->
-        <!--</li>-->
-    <!--</ul>-->
-<!--</div>-->
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

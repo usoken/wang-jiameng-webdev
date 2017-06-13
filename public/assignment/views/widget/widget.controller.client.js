@@ -50,7 +50,7 @@
                 var template = 'views/widget/widget-youtube.view.client.html';
             }
             if (widgetType === "HTML") {
-                var template = 'views/widget/widget-html.view.client.html';
+                var template = 'views/widget/widget-html-edit.view.client.html';
             }
             if (widgetType === "TEXT") {
                 var template = 'views/widget/widget-text.view.client.html';
@@ -132,7 +132,7 @@
                 var template = 'views/widget/widget-youtube.view.client.html';
             }
             if (widgetType === "HTML") {
-                var template = 'views/widget/widget-html.view.client.html';
+                var template = 'views/widget/widget-html-edit.view.client.html';
             }
             if (widgetType === "TEXT") {
                 var template = 'views/widget/widget-text.view.client.html';
