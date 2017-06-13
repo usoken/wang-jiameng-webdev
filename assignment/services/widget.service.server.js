@@ -30,33 +30,6 @@ module.exports = function (app, models) {
                 res.json(data);
             }
         )
-        //
-        // widgetModel
-        //     .findWidgetsByPageId(pageId)
-        //     .then(function (widgetIds) {
-        //         widgetModel
-        //             .findWidgetsByIds(widgetIds)
-        //             .then(function (widgets) {
-        //                 var finalHashWidgetList = getHashedList(widgets);
-        //
-        //                 function getHashedList(widgets) {
-        //                     var hashWidgetList = [];
-        //                     for (var i in widgets) {
-        //                         hashWidgetList[widgets[i]._id] = widgets[i];
-        //                     }
-        //                     return hashWidgetList;
-        //                 }
-        //
-        //                 var widgetList = [];
-        //
-        //                 for (var i = 0; i < widgetIds.length; i++) {
-        //                     var widgetId = widgetIds[i];
-        //                     var widget = finalHashWidgetList[widgetId];
-        //                     widgetList.push(widget);
-        //                 }
-        //                 res.json(widgetList);
-        //             })
-        //     });
     }
 
     function findWidgetById(req, res) {
@@ -107,7 +80,6 @@ module.exports = function (app, models) {
             });
     }
 
-    /////////////// Upload Image in Widget Image /////////////////////
 
     var multer = require('multer');
     var upload = multer({dest: __dirname + '/../../public/uploads'});

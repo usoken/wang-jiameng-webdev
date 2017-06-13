@@ -10,9 +10,6 @@ module.exports = function () {
     pageModel.findPageById = findPageById;
     pageModel.deletePage = deletePage;
 
-    pageModel.addWidgetToArray = addWidgetToArray;
-    pageModel.deleteWidgetFromArray = deleteWidgetFromArray;
-
     module.exports = pageModel;
 
     return {
@@ -62,25 +59,6 @@ module.exports = function () {
                     .then(function () {
                         return websiteModel.deletePageFromArray(websiteId, pageId)
                     })
-            })
-    }
-
-
-    function addWidgetToArray(pageId, widgetId) {
-        return pageModel.findPageById(pageId)
-            .then(function (page) {
-                page._widgets.push(widgetId);
-                return page.save();
-            });
-    }
-
-    function deleteWidgetFromArray(pageId, widgetId) {
-        return pageModel
-            .findPageById(pageId)
-            .then(function (page) {
-                var index = page._widgets.indexOf(widgetId);
-                page._widgets.splice(index, 1);
-                return page.save();
             })
     }
 };
