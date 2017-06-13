@@ -24,35 +24,39 @@ module.exports = function (app, models) {
     }
 
     function findWidgetsByPageId(req, res) {
-        console.log("list");
         var pageId = req.params['pageId'];
-
-        widgetModel
-            .findWidgetsByPageId(pageId)
-            .then(function (widgetIds) {
-                widgetModel
-                    .findWidgetsByIds(widgetIds)
-                    .then(function (widgets) {
-                        var finalHashWidgetList = getHashedList(widgets);
-                        // Helper function
-                        function getHashedList(widgets) {
-                            var hashWidgetList = [];
-                            for (var i in widgets) {
-                                hashWidgetList[widgets[i]._id] = widgets[i];
-                            }
-                            return hashWidgetList;
-                        }
-
-                        var widgetList = [];
-
-                        for (var i = 0; i < widgetIds.length; i++) {
-                            var widgetId = widgetIds[i];
-                            var widget = finalHashWidgetList[widgetId];
-                            widgetList.push(widget);
-                        }
-                        res.json(widgetList);
-                    })
-            });
+        widgetModel.findWidgetsByPageId(pageId).then(
+            function (data) {
+                res.json(data);
+            }
+        )
+        //
+        // widgetModel
+        //     .findWidgetsByPageId(pageId)
+        //     .then(function (widgetIds) {
+        //         widgetModel
+        //             .findWidgetsByIds(widgetIds)
+        //             .then(function (widgets) {
+        //                 var finalHashWidgetList = getHashedList(widgets);
+        //
+        //                 function getHashedList(widgets) {
+        //                     var hashWidgetList = [];
+        //                     for (var i in widgets) {
+        //                         hashWidgetList[widgets[i]._id] = widgets[i];
+        //                     }
+        //                     return hashWidgetList;
+        //                 }
+        //
+        //                 var widgetList = [];
+        //
+        //                 for (var i = 0; i < widgetIds.length; i++) {
+        //                     var widgetId = widgetIds[i];
+        //                     var widget = finalHashWidgetList[widgetId];
+        //                     widgetList.push(widget);
+        //                 }
+        //                 res.json(widgetList);
+        //             })
+        //     });
     }
 
     function findWidgetById(req, res) {
@@ -111,7 +115,6 @@ module.exports = function (app, models) {
     app.post("/api/upload", upload.single('myFile'), uploadImage);
 
     function uploadImage(req, res) {
-        console.log(">>>>>>>>>>>");
         var userId = req.body.userId;
         var websiteId = req.body.websiteId;
         var pageId = req.body.pageId;

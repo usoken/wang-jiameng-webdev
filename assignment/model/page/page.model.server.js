@@ -9,7 +9,7 @@ module.exports = function () {
     pageModel.updatePage = updatePage;
     pageModel.findPageById = findPageById;
     pageModel.deletePage = deletePage;
-    // Helper function
+
     pageModel.addWidgetToArray = addWidgetToArray;
     pageModel.deleteWidgetFromArray = deleteWidgetFromArray;
 
@@ -21,7 +21,7 @@ module.exports = function () {
         updatePage: updatePage,
         findPageById: findPageById,
         deletePage: deletePage,
-        // Helper function
+
         addWidgetToArray: addWidgetToArray,
         deleteWidgetFromArray: deleteWidgetFromArray
     };
@@ -65,7 +65,6 @@ module.exports = function () {
             })
     }
 
-    ///////////// Helper function/////////////////
 
     function addWidgetToArray(pageId, widgetId) {
         return pageModel.findPageById(pageId)

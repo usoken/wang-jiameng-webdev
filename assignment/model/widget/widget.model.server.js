@@ -1,17 +1,16 @@
 module.exports = function () {
-    console.log("jin");
     var mongoose = require('mongoose');
     var widgetSchema = require("./widget.schema.server");
     var widgetModel = mongoose.model("widgetModel", widgetSchema);
-    var pageModel = require('../page/page.model.server');
+  //  var pageModel = require('../page/page.model.server');
 
     widgetModel.createWidget = createWidget;
     widgetModel.findWidgetsByPageId = findWidgetsByPageId;
     widgetModel.findWidgetById = findWidgetById;
     widgetModel.updateWidget = updateWidget;
     widgetModel.deleteWidget = deleteWidget;
-    widgetModel.reorderWidget = reorderWidget;
-    widgetModel.findWidgetsByIds = findWidgetsByIds;
+    // widgetModel.reorderWidget = reorderWidget;
+    // widgetModel.findWidgetsByIds = findWidgetsByIds;
 
     module.exports = widgetModel;
 
@@ -20,26 +19,29 @@ module.exports = function () {
         findWidgetsByPageId: findWidgetsByPageId,
         findWidgetById: findWidgetById,
         updateWidget: updateWidget,
-        deleteWidget: deleteWidget,
-        reorderWidget: reorderWidget,
-        findWidgetsByIds: findWidgetsByIds
+        deleteWidget: deleteWidget
+        // reorderWidget: reorderWidget,
+        // findWidgetsByIds: findWidgetsByIds
     };
 
     function createWidget(widget) {
-        return widgetModel.create(widget)
-            .then(function (widget) {
-                var pageId = widget._page;
-                var widgetId = widget._id;
-                pageModel.addWidgetToArray(pageId, widgetId);
-                return widget;
-            })
+        // return widgetModel.create(widget)
+        //     .then(function (widget) {
+        //         var pageId = widget._page;
+        //         var widgetId = widget._id;
+        //         pageModel.addWidgetToArray(pageId, widgetId);
+        //         return widget;
+        //     })
+        return widgetModel.create(widget);
+
     }
 
     function findWidgetsByPageId(pageId) {
-        return pageModel.findPageById(pageId)
-            .then(function (page) {
-                return page._widgets;
-            })
+        // return pageModel.findPageById(pageId)
+        //     .then(function (page) {
+        //         return page._widgets;
+        //     })
+        return widgetModel.find({_page: pageId});
     }
 
     function findWidgetById(widgetId) {
@@ -53,14 +55,16 @@ module.exports = function () {
     }
 
     function deleteWidget(widgetId) {
-        return widgetModel.findWidgetById(widgetId)
-            .then(function (widget) {
-                var pageId = widget._page;
-                return widgetModel.remove({_id: widgetId})
-                    .then(function () {
-                        return pageModel.deleteWidgetFromArray(pageId, widgetId);
-                    })
-            })
+        // return widgetModel.findWidgetById(widgetId)
+        //     .then(function (widget) {
+        //         var pageId = widget._page;
+        //         return widgetModel.remove({_id: widgetId})
+        //             .then(function () {
+        //                 return pageModel.deleteWidgetFromArray(pageId, widgetId);
+        //             })
+        //     })
+
+        return widgetModel.remove({_id: widgetId});
     }
 
 

@@ -11,6 +11,7 @@
         var vm = this;
         vm.getHtml = getHtml;
         vm.getUrl = getUrl;
+        vm.getTemplate = getTemplate;
 
         vm.userId = $routeParams['uid'];
         vm.websiteId = $routeParams['wid'];
@@ -36,6 +37,25 @@
             var id = urlParts[urlParts.length - 1];
             var url = "https://www.youtube.com/embed/" + id;
             return $sce.trustAsResourceUrl(url);
+        }
+
+        function getTemplate(widgetType) {
+            if (widgetType === "HEADING") {
+                var template = 'views/widget/widget-heading.view.client.html';
+            }
+            if (widgetType === "IMAGE") {
+                var template = 'views/widget/widget-image.view.client.html';
+            }
+            if (widgetType === "YOUTUBE") {
+                var template = 'views/widget/widget-youtube.view.client.html';
+            }
+            if (widgetType === "HTML") {
+                var template = 'views/widget/widget-html.view.client.html';
+            }
+            if (widgetType === "TEXT") {
+                var template = 'views/widget/widget-text.view.client.html';
+            }
+            return template;
         }
 
     }
@@ -135,7 +155,7 @@
         }
     }
 
-    function FlickrImageSearchController($sce, $routeParams, widgetService, FlickrService) {
+    function FlickrImageSearchController($sce, $routeParams, widgetService, flickrService) {
         var vm = this;
         vm.userId = $routeParams['uid'];
         vm.websiteId = $routeParams['wid'];
@@ -157,7 +177,7 @@
 
 
         function searchPhotos(searchTerm) {
-            FlickrService
+            flickrService
                 .searchPhotos(searchTerm)
                 .then(function (response) {
                     data = response.data.replace("jsonFlickrApi(", "");
