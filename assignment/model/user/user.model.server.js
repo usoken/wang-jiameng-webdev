@@ -23,7 +23,8 @@ module.exports = function () {
 
     function updateUser(userId, newUser) {
         delete newUser.username;
-        return userModel.update({_id: userId}, {
+        return userModel.update(
+            {_id: userId}, {
             $set: {
                 firstName: newUser.firstName,
                 lastName: newUser.lastName,

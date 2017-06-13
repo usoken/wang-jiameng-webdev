@@ -1,0 +1,21 @@
+<div class="fixed-distance list fixed-width">
+    <div class="container-fluid">
+        <label for="name">Name</label>
+        <input id="name"
+               ng-model="model.widget.name"
+               placeholder="Name"
+               class="form-control"/>
+
+        <label for="htmlEditor">HTML</label>
+        <div class="form-group">
+            <div ng-model="model.widget.text"
+                 id="htmlEditor"
+                 text-angular
+                 ta-toolbar="[['h1','h2','h3'],
+                     ['bold','italics','underline','strikeThrough'],
+                     ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+                     ['indent','outdent'],['html']]">
+            </div>
+        </div>
+    </div>
+</div>

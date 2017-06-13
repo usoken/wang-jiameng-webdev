@@ -1,21 +1,51 @@
 (function () {
     angular
-        .module('WebAppMaker')
-        .controller('PageListController', PageListController)
-        .controller('NewPageController', NewPageController)
-        .controller('EditPageController', EditPageController);
+        .module("WebAppMaker")
+        .controller("PageListController", PageListController)
+        .controller("EditPageController", EditPageController)
+        .controller("NewPageController", NewPageController);
 
-    function PageListController($routeParams, pageService) {
+    function EditPageController($routeParams, $location, pageService) {
         var vm = this;
         vm.userId = $routeParams['uid'];
         vm.websiteId = $routeParams['wid'];
         vm.pageId = $routeParams['pid'];
 
+        vm.updatePage = updatePage;
+        vm.deletePage = deletePage;
+
         function init() {
-            pageService.findPagesByWebsiteId(vm.websiteId).then(
-                function (data) {
-                    vm.pages = data;
-        });
+            pageService
+                .findPageById(vm.pageId)
+                .then(function (page) {
+                    vm.page = page;
+                });
+        }
+
+        init();
+
+        function updatePage() {
+            pageService.updatePage(vm.pageId, vm.page);
+            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
+        }
+
+        function deletePage() {
+            pageService.deletePage(vm.pageId);
+            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
+        }
+    }
+
+    function PageListController($routeParams, pageService) {
+        var vm = this;
+        vm.userId = $routeParams['uid'];
+        vm.websiteId = $routeParams['wid'];
+
+        function init() {
+            pageService
+                .findPagesByWebsiteId(vm.websiteId)
+                .then(function (pages) {
+                    vm.pages = pages;
+                });
         }
 
         init();
@@ -23,59 +53,30 @@
 
     function NewPageController($routeParams, $location, pageService) {
         var vm = this;
-        vm.userId = $routeParams['uid'];
+        vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams['wid'];
+
         vm.createPage = createPage;
 
         function init() {
-            pageService.findPagesByWebsiteId(vm.websiteId).then(
-                function (data) {
-                    vm.pages = data;
+            pageService
+                .findPagesByWebsiteId(vm.websiteId)
+                .then(function (pages) {
+                    vm.pages = pages;
                 });
         }
+
         init();
 
-        function createPage(page) {
-
-            var website = {
-                _id : (new Date()).getTime()+"",
-                name:vm.name,
-                websiteId:vm.websiteId
-
+        function createPage(name, title) {
+            var newPage = {
+                _website: vm.websiteId,
+                name: name,
+                title: title
             };
-            pageService.createPage(vm.websiteId, page);
-            $location.url('/user/'+vm.userId+'/website/'+ vm.websiteId + '/page');
-        }
-    }
 
-    function EditPageController($routeParams, $location, pageService) {
-        var vm = this;
-        vm.userId = $routeParams['uid'];
-        vm.websiteId = $routeParams['wid'];
-        vm.pageId = $routeParams['pid'];
-        vm.updatePage = updatePage;
-        vm.deletePage = deletePage;
-
-        function init() {
-            pageService.findPageById(vm.pageId).then(
-                function (res) {
-                    vm.page = res.data;
-                }
-            );
-        }
-        init();
-
-        function updatePage(page) {
-            pageService.updatePage(vm.pageId, page);
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/");
-
-        }
-
-        function deletePage() {
-            pageService.deletePage(vm.pageId);
+            pageService.createPage(vm.websiteId, newPage);
             $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
-
         }
     }
-
 })();

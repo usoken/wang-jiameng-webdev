@@ -4,7 +4,6 @@
         .factory('userService', userService);
 
     function userService($http) {
-
         return {
             createUser: createUser,
             findUserByCredentials: findUserByCredentials,
@@ -18,7 +17,6 @@
             var url = "/api/user";
             return $http.post(url, user);
         }
-
 
         function findUserByCredentials(username, password) {
             var url = "/api/assignment/user?username=" + username + "&password=" + password;
@@ -38,24 +36,24 @@
             var url = "/api/user?username=" + username;
             return $http
                 .get(url)
-                .then(function (res) {
-                    return res.data;
+                .then(function (response) {
+                    return response.data;
                 });
         }
 
-        function updateUser(userId, user) {
+        function updateUser(userId, newUser) {
             var url = "/api/user/" + userId;
-            var update = {
+            var data = {
                 id: userId,
-                user: user
+                newUser: newUser
             };
-            return $http.put(url, update);
+            return $http.put(url, data);
         }
 
         function deleteUser(userId) {
             var url = "/api/user/" + userId;
-            return $http.delete(url);
+            return $http
+                .delete(url);
         }
-
     }
 })();

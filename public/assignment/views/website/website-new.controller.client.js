@@ -20,15 +20,15 @@
         }
         init();
 
-        function createWebsite(name) {
+        function createWebsite(name, description) {
             var website = {
-                _id : (new Date()).getTime()+"",
+                _user:model.userId,
                 name:name,
-                developerId:model.userId
-
+                description: description
             };
             websiteService.createWebsite(model.userId, website);
             $location.url('/user/'+model.userId+'/website/');
+
         }
     }
 })();

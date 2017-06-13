@@ -13,44 +13,49 @@
             deleteWebsite: deleteWebsite
         };
 
-        function createWebsite(userId,website) {
+        function createWebsite(userId, website) {
             var url = "/api/user/" + userId + "/website";
-            var website = {
+            var data = {
                 userId: userId,
                 website: website
             };
-
-            return $http.post(url, website).then(function (response) {
-                return response.data;
-            });
+            return $http.post(url, data)
         }
 
-        function updateWebsite(websiteId, Website) {
+        function updateWebsite(websiteId, website) {
             var url = "/api/website/" + websiteId;
-            return $http.put(url, Website).then(function (response) {
-                return response.data;
-            });
+            return $http
+                .put(url, website)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function deleteWebsite(websiteId) {
             var url = "/api/website/" + websiteId;
-            $http.delete(url);
+            return $http
+                .delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function findWebsiteById(websiteId) {
-            console.log(websiteId);
             var url = "/api/website/" + websiteId;
-            return $http.get(url);
+            return $http
+                .get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function findWebsitesByUser(userId) {
-            console.log(userId);
             var url = "/api/user/" + userId + "/website";
-            return $http.get(url).then(
-                function(response) {
+            return $http
+                .get(url)
+                .then(function (response) {
                     return response.data;
-                }
-            );
+                });
         }
     }
 })();

@@ -14,7 +14,7 @@
                         New Page
                     </a>
                     <p class="pull-right navbar-text">
-                        <a ng-click="model.createPage(page)">
+                        <a ng-click="model.createPage(name, title)">
           <span class="glyphicon glyphicon-ok">
           </span>
                         </a>
@@ -28,13 +28,13 @@
 <div class="container-fluid">
 
             <label for name="name" >Name</label>
-            <input ng-model="page.name"
+            <input ng-model="name"
                    id="name"
                    class="form-control"
                    placeholder="Page Name"/>
             <label for="title">Title</label>
             <input id="title"
-                   ng-model="page.title"
+                   ng-model="title"
                    rows="5"
                    class="form-control"
                    placeholder="Page Title"/>

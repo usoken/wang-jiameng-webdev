@@ -7,28 +7,27 @@
                                    websiteService,
                                    $location) {
 
+
         var vm = this;
         vm.userId = $routeParams['uid'];
         vm.websiteId = $routeParams['wid'];
 
-
-        // event handlers
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
 
         function init() {
             websiteService.findWebsiteById(vm.websiteId).then(
-                function (res) {
-                    vm.website = res.data;
+                function (data) {
+                    vm.website = data;
                 }
             );
         }
         init();
 
         function updateWebsite(website) {
-            websiteService.updateWebsite (vm.websiteId, website).then(function () {
-                $location.url("/user/" + vm.userId + "/website/");
-            });
+            websiteService.updateWebsite (vm.websiteId, website);
+            $location.url("/user/" +  vm.userId + "/website/");
+
         }
 
         function deleteWebsite() {

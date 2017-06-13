@@ -1,20 +1,38 @@
-<div class="container-fluid">
+<div class="fixed-distance list fixed-width">
+    <form class="fixed-right-page-distance">
+        <div>
+            <label for="wd name">Name</label>
+            <input type="text"
+                   class="form-control"
+                   id="wd name"
+                   ng-model="model.widget.name"
+                   placeholder="Name">
+        </div>
 
-    <label for="text">Text</label>
-    <input id="text"
-           ng-model="model.widget.text"
-           ng-model="text"
-           class="form-control"
-    />
-    <label for="size">URL</label>
-    <input id="size"
-           type="url"
-           ng-model="model.widget.url"
-           class="form-control"
-    />
+        <div class="form-group">
+            <label for="text">Text</label>
+            <textarea class="form-control large-input"
+                      ng-model="model.widget.text"
+                      placeholder="Text"
+                      id="text"></textarea>
+        </div>
 
-    <label for="width">Width</label>
-    <input ng-model = "model.widget.width"
-           id="width"
-           class="form-control"/>
+        <div>
+            <label for="url">URL</label>
+            <input type="url"
+                   class="form-control"
+                   ng-model="model.widget.url"
+                   id="url"
+                   placeholder="https://www.youtube.com/">
+        </div>
+
+        <div>
+            <label for="width">Width</label>
+            <input type="text"
+                   class="form-control"
+                   id="width"
+                   ng-model="model.widget.width"
+                   placeholder="Width">
+        </div>
+    </form>
 </div>

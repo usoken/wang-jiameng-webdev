@@ -1,4 +1,13 @@
 <div class="fixed-distance list fixed-width">
+    <div>
+        <label for="wd name">Name</label>
+        <input type="text"
+               class="form-control"
+               id="wd name"
+               ng-model="model.widget.name"
+               placeholder="Name">
+    </div>
+
     <div class="form-group">
         <label for="text">Text</label>
         <textarea class="form-control large-input"
@@ -12,6 +21,7 @@
         <input type="url"
                class="form-control"
                id="url"
+               placeholder="Image URL"
                ng-model="model.widget.url">
     </div>
 
@@ -24,9 +34,14 @@
                placeholder="Width">
     </div>
 
+
+    <label>Flickr</label>
+    <a class="btn btn-info btn-block" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/search">
+        Search on Flickr
+    </a>
+
     <div>
-        <h1> </h1>
-        <label>Upload Image</label>
+        <label>Upload</label>
         <form action="/api/upload"   method="post" enctype="multipart/form-data">
             <input  name="myFile"    type="file" class="form-control"/>
             <input  name="width"     value="{{model.widget.width}}" style="display: none"/>
@@ -38,9 +53,4 @@
         </form>
 
     </div>
-
-    <label>Flickr</label>
-    <a class="btn btn-info btn-block" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/search">
-        Search on Flickr
-    </a>
 </div>

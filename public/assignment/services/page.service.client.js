@@ -3,8 +3,8 @@
         .module('WebAppMaker')
         .factory('pageService', pageService);
 
-
     function pageService($http) {
+
 
         return {
             findPageById: findPageById,
@@ -16,40 +16,46 @@
 
         function createPage(websiteId, page) {
             var url = "/api/website/" + websiteId + "/page";
-            page._id = (new Date()).getTime() + "";
-            page.websiteId = websiteId;
-            return $http.post(url, page).then(function (response) {
-                return response.data;
-            });
+            var data = {
+                websiteId: websiteId,
+                page: page
+            };
+            return $http.post(url, data);
         }
 
-        function findPagesByWebsiteId(websiteId) {
-            var url = "/api/website/" + websiteId + "/page";
-            return $http.get(url).then(
-                function(response) {
-                    return response.data;
-                }
-            );
-        }
 
         function findPageById(pageId) {
-            console.log(pageId);
             var url = "/api/page/" + pageId;
-            return $http.get(url);
+            return $http
+                .get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
-        function updatePage(pageId, Page) {
+        function updatePage(pageId, page) {
             var url = "/api/page/" + pageId;
-            return $http.put(url, Page)
+            var data = {
+                pageId: pageId,
+                page: page
+            };
+            return $http
+                .put(url, data)
                 .then(function (response) {
-                return response.data;
-
-            });
+                    return response.data;
+                });
         }
 
         function deletePage(pageId) {
             var url = "/api/page/" + pageId;
-            $http.delete(url);
+            return $http.delete(url);
+        }
+
+        function findPagesByWebsiteId(websiteId) {
+            var url = "/api/website/" + websiteId + "/page";
+            return $http.get(url).then(function (response) {
+                return response.data;
+            });
         }
     }
 })();
