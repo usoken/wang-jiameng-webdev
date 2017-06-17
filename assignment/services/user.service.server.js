@@ -7,8 +7,8 @@ module.exports = function (app, models) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
     passport.use(new LocalStrategy(localStrategy));
-    user.password = bcrypt.hashSync(user.password);
-    return userModel.createUser(user);
+    //user.password = bcrypt.hashSync(user.password);
+   // return userModel.createUser(user);
     var facebookConfig = {
         clientID : process.env. FACEBOOK_CLIENT_ID ,
         clientSecret : process.env. FACEBOOK_CLIENT_SECRET ,
