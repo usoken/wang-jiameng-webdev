@@ -21,20 +21,22 @@
                 }
 
                 else {
-                    var found = userService.findUserByUsername(username).then(
+
+                    userService.findUserByUsername(username).then(
                         function (data) {
                             var found = data;
                             if(found !== null) {
                                 vm.error = "Username has been taken";
-                            } else {
+                            }
+                            else {
                                 var user = {
                                     username: username,
                                     password: password
                                 };
                                 userService
-                                    .createUser(user)
-                                    .then(function (res) {
-                                        $location.url("/user/" + res.data._id);
+                                    .register(user)
+                                    .then(function (user) {
+                                        $location.url("/profile");
                                     });
 
                             }

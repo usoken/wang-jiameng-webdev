@@ -17,10 +17,13 @@
                 controller: 'RegisterController',
                 controllerAs: 'model'
             })
-            .when('/user/:uid', {
+            .when('/profile', {
                 templateUrl: 'views/user/profile.view.client.html',
                 controller: 'ProfileController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve:{
+                    currentUser:checkLoggedIn
+                }
             })
             //website flow
             .when('/user/:uid/website', {
@@ -83,5 +86,22 @@
                 controllerAs: 'model'
             });
 
+
+
+    }
+
+    function checkLoggedIn($q, $location, userService) {
+        var deferred = $q.defer();
+        userService
+            .checkLoggedIn()
+            .then(function (currentUser) {
+                if(currentUser === '0') {
+                    deferred.reject();
+                    $location.url('/login');
+                } else {
+                    deferred.resolve(currentUser);
+                }
+            });
+        return deferred.promise;
     }
 })();
