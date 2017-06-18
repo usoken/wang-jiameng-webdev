@@ -5,7 +5,17 @@
 
     function LoginController($location, userService) {
         var vm = this;
+        vm.passwordCheck =  true;
+
         vm.login = function (username, password) {
+
+            if (password === undefined) {
+                vm.passwordCheck = false;
+            }
+            if (username === undefined && password === undefined) {
+                vm.passwordCheck =  false;
+            }
+
             userService
                 .login(username,password)
                 .then(login, handleError);

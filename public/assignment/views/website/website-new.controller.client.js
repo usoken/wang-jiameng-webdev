@@ -21,14 +21,19 @@
         init();
 
         function createWebsite(name, description) {
-            var website = {
-                _user:model.userId,
-                name:name,
-                description: description
-            };
-            websiteService.createWebsite(model.userId, website);
-            $location.url('/user/'+model.userId+'/website/');
+            if (name === undefined || name === null) {
+                model.message = "Website Name required";
+            }
+            else {
 
+                var website = {
+                    _user:model.userId,
+                    name:name,
+                    description: description
+                };
+                websiteService.createWebsite(model.userId, website);
+                $location.url('/user/'+model.userId+'/website/');
+            }
         }
     }
 })();

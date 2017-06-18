@@ -11,7 +11,7 @@
 
         function register(username, password, confirmPassword) {
 
-            if (username === undefined && password === undefined && confirmPassword === undefined){
+            if (username === undefined || password === null || confirmPassword === undefined){
                 vm.error = "You can't leave this empty";
             }
 

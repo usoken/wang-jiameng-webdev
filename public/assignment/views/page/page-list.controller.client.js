@@ -25,9 +25,13 @@
         init();
 
         function updatePage() {
+            if (vm.page.name === null || vm.page.name === "" || vm.page.name === undefined) {
+                vm.message = "Page Name required";
+            }
+            else {
             pageService.updatePage(vm.pageId, vm.page);
             $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
-        }
+        }}
 
         function deletePage() {
             pageService.deletePage(vm.pageId);
@@ -69,14 +73,19 @@
         init();
 
         function createPage(name, title) {
-            var newPage = {
-                _website: vm.websiteId,
-                name: name,
-                title: title
-            };
+            if (name === "" || name === null || name === undefined) {
+                vm.message = "Page Name required";
+            }
+            else {
+                var newPage = {
+                    _website: vm.websiteId,
+                    name: name,
+                    title: title
+                };
 
-            pageService.createPage(vm.websiteId, newPage);
-            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
+                pageService.createPage(vm.websiteId, newPage);
+                $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/');
+            }
         }
     }
 })();

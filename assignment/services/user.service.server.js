@@ -8,7 +8,7 @@ module.exports = function (app, models) {
     passport.deserializeUser(deserializeUser);
     passport.use(new LocalStrategy(localStrategy));
     //user.password = bcrypt.hashSync(user.password);
-   // return userModel.createUser(user);
+    // return userModel.createUser(user);
     var facebookConfig = {
         clientID : process.env. FACEBOOK_CLIENT_ID ,
         clientSecret : process.env. FACEBOOK_CLIENT_SECRET ,
@@ -38,48 +38,49 @@ module.exports = function (app, models) {
         }));
 
     function facebookStrategy(token, refreshToken, profile, done) {
-       userModel.findUserByFacebookId(profile.id).then(
-           function (user) {
-               if(user) {
-                   return done(null, user);
-               }
-               else {
-                   var newFacebookUser = {
-                       username:  profile.displayName,
-                       facebook: {
-                           id:    profile.id,
-                           token: token
-                       }
-                   };
-                   return userModel.createUser(newFacebookUser);
-               }
+        userModel.findUserByFacebookId(profile.id).then(
+            function (user) {
+                if(user) {
+                    return done(null, user);
+                }
+                else {
+                    var newFacebookUser = {
+                        username:  profile.displayName,
+                        facebook: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    };
+                    return userModel.createUser(newFacebookUser);
+                }
 
-           },
+            },
 
-           function(err) {
+            function(err) {
                 if (err) { return done(err); }
-           })
-           .then(
-               function(user){
-                   return done(null, user);
-               },
-               function(err){
-                   if (err) { return done(err); }
-               }
+            })
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
 
 
-       );
+            );
     }
 
 
     function register(req, res) {
         var user = req.body;
+       // user.password = bcrypt.hashSync(user.password);
         userModel
             .createUser(user)
             .then(
                 function (user) {
                     req.login(user, function (status) {
-                            res.json(user);
+                        res.json(user);
                     });
                 });
     }
@@ -115,6 +116,21 @@ module.exports = function (app, models) {
                     if (err) { return done(err); }
                 }
             );
+
+        // userModel.findUserByUsername(username).then(
+        //     function (user) {
+        //         if(user && bcrypt.compareSync(password,user.password)) {
+        //             done(null, user);
+        //         }
+        //         else {
+        //             done(null, false);
+        //         }
+        //         }
+        //         ,
+        //     function (error) {
+        //         done(error, false);
+        //     }
+        // )
     }
 
 
@@ -214,5 +230,4 @@ module.exports = function (app, models) {
                 });
     }
 };
-
 

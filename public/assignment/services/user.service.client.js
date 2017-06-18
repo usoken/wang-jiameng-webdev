@@ -43,11 +43,11 @@
                 }
             );
         }
-        
+
         function logout() {
             return $http.post("/api/logout");
         }
-        
+
         function register(user) {
             return $http.post("/api/register", user).then(
                 function (res) {

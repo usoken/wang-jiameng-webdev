@@ -25,6 +25,9 @@
 
 <div class="container-fluid">
     <div class="row">
+        <div ng-show="model.message" class="alert alert-info">
+            {{model.message}}
+        </div>
             <label for="name">Website Name</label>
             <input ng-model = "model.website.name"
                    id="name"

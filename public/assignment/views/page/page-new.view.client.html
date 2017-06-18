@@ -26,6 +26,9 @@
 </nav>
 
 <div class="container-fluid">
+    <div ng-show="model.message" class="alert alert-info">
+        {{model.message}}
+    </div>
 
             <label for name="name" >Name</label>
             <input ng-model="name"

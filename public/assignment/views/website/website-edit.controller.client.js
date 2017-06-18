@@ -25,8 +25,13 @@
         init();
 
         function updateWebsite(website) {
-            websiteService.updateWebsite (vm.websiteId, website);
-            $location.url("/user/" +  vm.userId + "/website/");
+            if (website.name === null || website.name === "" || website.name === undefined) {
+                vm.message = "Website Name required";
+            }
+            else {
+                websiteService.updateWebsite (vm.websiteId, website);
+                $location.url("/user/" +  vm.userId + "/website/");
+            }
 
         }
 
