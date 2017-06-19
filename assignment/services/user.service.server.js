@@ -74,7 +74,7 @@ module.exports = function (app, models) {
 
     function register(req, res) {
         var user = req.body;
-       // user.password = bcrypt.hashSync(user.password);
+       user.password = bcrypt.hashSync(user.password);
         userModel
             .createUser(user)
             .then(
@@ -103,34 +103,34 @@ module.exports = function (app, models) {
     }
 
     function localStrategy(username, password, done) {
-        userModel
-            .findUserByCredentials(username, password)
-            .then(
-                function(user) {
-                    if (!user) {
-                        return done(null, false);
-                    }
-                    return done(null, user);
-                },
-                function(err) {
-                    if (err) { return done(err); }
-                }
-            );
+        // userModel
+        //     .findUserByCredentials(username, password)
+        //     .then(
+        //         function(user) {
+        //             if (!user) {
+        //                 return done(null, false);
+        //             }
+        //             return done(null, user);
+        //         },
+        //         function(err) {
+        //             if (err) { return done(err); }
+        //         }
+        //     );
 
-        // userModel.findUserByUsername(username).then(
-        //     function (user) {
-        //         if(user && bcrypt.compareSync(password,user.password)) {
-        //             done(null, user);
-        //         }
-        //         else {
-        //             done(null, false);
-        //         }
-        //         }
-        //         ,
-        //     function (error) {
-        //         done(error, false);
-        //     }
-        // )
+        userModel.findUserByUsername(username).then(
+            function (user) {
+                if(user && bcrypt.compareSync(password,user.password)) {
+                    done(null, user);
+                }
+                else {
+                    done(null, false);
+                }
+                }
+                ,
+            function (error) {
+                done(error, false);
+            }
+        )
     }
 
 

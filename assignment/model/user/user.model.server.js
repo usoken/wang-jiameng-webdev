@@ -57,7 +57,7 @@ module.exports = function () {
 
     function findUserByUsername(userName) {
         return userModel.findOne({
-            userName: userName
+            username: userName
         });
     }
 
