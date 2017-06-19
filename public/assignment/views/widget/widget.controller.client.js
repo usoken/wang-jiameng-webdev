@@ -149,6 +149,11 @@
         }
 
         function updateWidget() {
+            console.log(vm.widget.name);
+            if(vm.widget.name === null || vm.widget.name === undefined || vm.widget.name === "") {
+                vm.message = "Website Name required";
+                return;
+            }
             console.log(vm.widget);
             widgetService.updateWidget(vm.widgetId, vm.widget);
             $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget/');

@@ -1,6 +1,9 @@
 <div class="fixed-distance list fixed-width">
     <form class="fixed-right-page-distance">
         <div>
+            <div ng-show="model.message" class="alert alert-info">
+                {{model.message}}
+            </div>
             <label for="wd name">Name</label>
             <input type="text"
                    class="form-control"

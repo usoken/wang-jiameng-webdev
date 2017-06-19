@@ -21,6 +21,9 @@
 </nav>
 
 <div ng-include="model.getTemplate(model.widget.widgetType)"></div>
+<div ng-show="model.message" class="alert alert-info">
+    {{model.message}}
+</div>
 
 <div class="fixed-width list wd-image-bottom">
     <a class="btn btn-danger  btn-block"

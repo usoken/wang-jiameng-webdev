@@ -1,5 +1,10 @@
 <div class="fixed-distance list fixed-width">
     <div class="form-group">
+        <b>Name</b>
+        <div ng-show="model.error" class="alert alert-danger">
+            {{model.error}}
+        </div>
+        <input class="form-control" ng-model="model.widget.name" type="text" placeholder="Text">
         <label for="text">Text</label>
         <textarea class="form-control large-input"
                   placeholder="Text"
