@@ -1,0 +1,39 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#!/user/{{model.userId}}/likes" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left">
+                        </span>
+                </a>
+            </p>
+            <a class="navbar-brand" style="padding-top: 20px">Details Page</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <ul class="list-group">
+        <li class="list-group-item">
+            <label>Name:</label>
+            <div class="pull-right">{{model.like.name}}</div>
+        </li>
+        <li class="list-group-item">
+            <label>Shared By:</label>
+            <a href="#!/user/{{model.userId}}/theOther/{{model.sharedUser._id}}/{{model.likeType}}/{{model.likeId}}"
+               class="pull-right">{{model.sharedUser.username}}</a>
+        </li>
+        <li class="list-group-item">
+            <label>Description:</label>
+            <div class="pull-right">{{model.like.description}}</div>
+        </li>
+    </ul>
+
+</div>
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+</nav>

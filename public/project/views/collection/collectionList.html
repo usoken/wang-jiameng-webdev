@@ -1,0 +1,64 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#!/profile" class="navbar-link">
+<span class="glyphicon glyphicon-chevron-left">
+</span>
+                </a>
+            </p>
+            <a class="navbar-brand" style="padding-top: 20px">
+                My Collection
+            </a>
+            <p class="navbar-text pull-right">
+                <a href="#!/user/{{model.userId}}/shares/new" class="navbar-link">
+<span class="glyphicon glyphicon-plus">
+</span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <h1><span class="glyphicon glyphicon-picture"></span> Photo</h1>
+
+    <ul class="list-group">
+        <li ng-repeat="share in model.sharePhotos" class="list-group-item myItem">
+            {{share.name}}
+            <a href="#!/user/{{model.userId}}/shares/photo/{{share._id}}/edit" class="pull-right"
+               style="margin-right: 5px">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+
+            <div>
+                <img ng-src="{{share.url}}" width="100%"/>
+            </div>
+
+
+        </li>
+
+    </ul>
+
+</div>
+
+<div class="container" style="margin-bottom: 50px">
+    <h1><span class="glyphicon glyphicon-folder-open"></span> Album</h1>
+
+    <ul class="list-group">
+        <li ng-repeat="share in model.shareAlbums" class="list-group-item myItem">
+
+            <a href="#!/user/{{model.userId}}/shares/album/{{share._id}}/edit">{{share.name}}</a>
+            <a style="margin-left: 5px" href="#!/user/{{model.userId}}/shares/album/{{share._id}}/addmore" class="pull-right">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+</nav>

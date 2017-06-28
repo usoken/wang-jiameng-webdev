@@ -1,0 +1,81 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="active">
+            <a class ="navbar-brand">
+                Profile
+            </a>
+            <p class="navbar-text pull-right" aria-expanded="false">
+                <a ng-click="model.updateUser()">
+                        <span class="glyphicon glyphicon-ok">
+                        </span>
+                </a>
+            </p>
+
+        </div>
+    </div>
+</nav>
+
+<h1> </h1>
+
+<div ng-show="model.error" class="alert alert-success">
+    {{model.error}}
+</div>
+
+<div class="container-fluid">
+
+    <form>
+        <div>
+            <h1>
+            </h1>
+        </div>
+        <div>
+            <LABEL>
+            </LABEL>
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input ng-model = "model.user.username" type="text" class="form-control" id="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input ng-model = "model.user.email" type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
+        </div>
+        <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input ng-model = "model.user.firstname"type="text" class="form-control" id="first-name" placeholder="Alice">
+        </div>
+        <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input ng-model = "model.user.lastname" type="text" class="form-control" id="last-name" placeholder="Wonderland">
+        </div>
+    </form>
+
+    <a href="#!/user/{{model.user._id}}/shares"
+       class="btn btn-block btn-primary">My collection</a>
+
+    <a href="#!/user/{{model.user._id}}/likes"
+       class="btn btn-block btn-primary">My favorite</a>
+
+    <a href="#!/user/{{model.user._id}}/findAll"
+       class="btn btn-block btn-primary">Browse more</a>
+
+    <a class="btn btn-warning  btn-block"
+       ng-click="model.deleteUser()">Delete</a>
+
+    <a href="#!/login" class="btn btn-block btn-default">Logout</a>
+
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="active">
+            <p class = "navbar-text pull-right">
+                <a href="" >
+                    <span class="glyphicon glyphicon-user pull-right"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,66 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#!/user/{{model.userId}}/shares" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left">
+                        </span>
+                </a>
+            </p>
+            <a class="navbar-brand" style="padding-top: 20px">Edit Album</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container"style="margin-bottom: 50px">
+
+    <div ng-show="model.success" class="alert alert-success animated fadeInDown" id="hideSuccess">
+        {{model.success}}
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger animated fadeInDown" id="hideError">
+        {{model.error}}
+    </div>
+<div>
+        <label for="shareName">Name</label>
+        <input ng-model="model.album.name"
+               type="text"
+               class="form-control"
+               id="shareName"
+               placeholder=""/>
+</div>
+    <div>
+        <label for="Description">Description</label>
+        <textarea ng-model="model.album.description"
+                  placeholder="Description"
+                  class="form-control"
+                  id="Description"
+                  rows="4"></textarea>
+
+    </div>
+    <div>
+        <ul class="list-group">
+            <li ng-repeat="share in model.photos" class="list-group-item myItem">
+                {{share.name}}
+                <a ng-click="model.deletePhotoFromAlbum(share._id, share.name)" class="pull-right"
+                   style="margin-right: 5px">
+                    <span class="glyphicon glyphicon glyphicon-trash"></span>
+                </a>
+
+
+            </li>
+
+        </ul>
+
+    </div>
+    <a class="btn btn-danger btn-block" ng-click="model.deleteShare()" style="margin-top: 5px">Delete</a>
+
+</div>
+
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+</nav>

@@ -1,0 +1,60 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#!/user/{{model.userId}}/shares" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left">
+                        </span>
+                </a>
+            </p>
+            <a class="navbar-brand" style="padding-top: 20px">New Collection</a>
+            <p class="navbar-text pull-right">
+                <a ng-click="model.createShare(name, type, description)"
+                   class="navbar-link">
+                        <span class="glyphicon glyphicon-ok">
+                        </span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+<div class="row">
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+    <div>
+        <label for="name">Name</label>
+        <input  ng-model="name"
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Name">
+    </div>
+
+    <div>
+
+        <label
+               for="type">Type</label>
+        <select ng-model="type" id="type" style=" margin-bottom: 10px">
+            <option value="photo">New Photo</option>
+            <option value="album">New Album</option>
+        </select>
+    </div>
+
+    <div>
+        <label  for="description">Description</label>
+        <textarea ng-model="description"
+                  placeholder="Description"
+                  class="form-control"
+                  id="description"
+                  rows="4"></textarea>
+    </div>
+</div>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+</nav>

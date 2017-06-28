@@ -1,0 +1,55 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#!/profile" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left">
+                        </span>
+                </a>
+            </p>
+            <a class="navbar-brand" style="padding-top: 20px">
+                My Favorite
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <h1><span class="glyphicon glyphicon-picture"></span> Photos</h1>
+
+    <ul class="list-group">
+        <li ng-repeat="like in model.favoritePhotos" class="list-group-item myItem">
+            <a href="#!/user/{{model.userId}}/likes/photo/{{like._id}}/{{like._user}}/information">{{like.name}}</a>
+            <a style="margin-right: 5px" ng-click="model.deleteLike(like._id, like.type)" class="pull-right">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
+            <div>
+                <img ng-src="{{like.url}}" width="100%"/>
+            </div>
+
+        </li>
+
+    </ul>
+
+</div>
+
+<div class="container" style="margin-bottom: 50px">
+    <h1><span class="glyphicon glyphicon-folder-open"></span> Albums</h1>
+
+    <ul class="list-group">
+        <li ng-repeat="like in model.likeAlbums" class="list-group-item myItem">
+            <a href="#!/user/{{model.userId}}/likes/album/{{like._id}}/{{like._user}}/information">{{like.name}}</a>
+            <a ng-click="model.deleteLike(like._id)" class="pull-right">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
+
+        </li>
+
+    </ul>
+
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+</nav>

@@ -1,0 +1,64 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#!/user/{{model.userId}}/shares" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left">
+                        </span>
+                </a>
+            </p>
+            <a class="navbar-brand" style="padding-top: 20px">Edit Photo</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div ng-show="model.success" class="alert alert-success">
+        {{model.success}}
+    </div>
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <div>
+        <label for="shareName">Name</label>
+        <input ng-model="model.share.name"
+               type="text"
+               class="form-control"
+               id="shareName"
+               placeholder=""/>
+    </div>
+
+    <div>
+
+        <label for="Description">Description</label>
+        <textarea ng-model="model.share.description"
+                  placeholder="Description"
+                  class="form-control"
+                  id="Description"
+                  rows="4"></textarea>
+    </div>
+
+    <div>
+    <form action="/api/upload"  method="post" enctype="multipart/form-data">
+        <label>Upload</label>
+        <input  name="myFile"   type="file"  class="form-control"/>
+        <input  name="photoId"    value="{{model.shareId}}" style="display: none"/>
+        <input  name="name"    value="{{model.share.name}}" style="display: none"/>
+        <input  name="description"    value="{{model.share.description}}" style="display: none"/>
+        <input  name="userId"    value="{{model.userId}}" style="display: none"/>
+        <input  name="type"    value="{{model.share.type}}" style="display: none"/>
+        <input  name="shareId"    value="{{model.shareId}}" style="display: none"/>
+        <button style="margin-top: 5px" type="submit" class="btn btn-primary btn-block">Upload</button>
+    </form>
+    </div>
+    <a class="btn btn-danger btn-block" ng-click="model.deleteShare()" style="margin-top: 5px">Delete</a>
+    <a class="btn btn-success btn-block" ng-click="model.updateShare()" style="margin-top: 5px">Update</a>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+</nav>

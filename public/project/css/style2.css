@@ -1,0 +1,105 @@
+
+/*
+.wd-scrollable-left-split {
+    position: absolute;
+    bottom: 37px;
+    top: 50px;
+    overflow: scroll;
+    padding-top: 10px;
+}
+
+@media (min-width: 768px) {
+    .col-sm-8 {
+        width: 66.66666667%;
+        margin-left: 33%;
+    }
+}
+*/
+
+/*.white {*/
+/*top: 20px;*/
+/*margin-top: 15px;*/
+/*color: white;*/
+/*margin-left: 35px;*/
+/*font-size: 18px;*/
+/*}*/
+
+.navbar-header {
+
+
+}
+input.form-control,
+textarea.form-control,
+select.form-control {
+    margin-bottom: 5px;
+}
+
+body {
+    margin-top: 70px;
+    margin-bottom: 60px;
+    padding-top: 5px;
+
+}
+
+/*.navbar-default {*/
+/*background-color: darkblue;*/
+/*}*/
+
+/*.navbar-default .navbar-brand {*/
+/*color: white;*/
+/*}*/
+
+/*
+.list-group-item {
+    border: none;
+}
+*/
+
+
+.srollable-left {
+    position: absolute;
+    top: 50px;
+    bottom: 0px;
+    overflow: scroll;
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
+
+
+
+@media (min-width: 768px) {
+    .col-sm-8 {
+        margin-left: 33%;
+    }
+}
+
+.wd-widget {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.wd-toolbar {
+    position: absolute;
+    background-color: white;
+    top: 0px;
+    right: 0px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 10px;
+    opacity: 0.8;
+}
+.video-container {
+    position:relative;
+    padding-bottom:56.25%;
+    padding-top:30px;
+    height:0;
+    overflow:hidden;
+}
+
+.video-container iframe, .video-container object, .video-container embed {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}

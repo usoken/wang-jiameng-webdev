@@ -1,25 +1,24 @@
-module.exports = function (app, models) {
+module.exports = function (app, model) {
 
 
-    var userModel = models.userModel;
+    var uModel = model.uModel;
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
-    var FacebookStrategy = require('passport-facebook').Strategy;
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
     var bcrypt = require("bcrypt-nodejs");
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
     passport.use(new LocalStrategy(localStrategy));
-    var facebookConfig = {
-        clientID : process.env. FACEBOOK_CLIENT_ID ,
-        clientSecret : process.env. FACEBOOK_CLIENT_SECRET ,
-        callbackURL : process.env. FACEBOOK_CALLBACK_URL,
-        profileFields: ['email']
-
-
+    var googleConfig = {
+        clientID     : process.env.GOOGLE_CLIENT_ID,
+        clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL  : process.env.GOOGLE_CALLBACK_URL
     };
-    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
 
+
+    // app.get('/user/loggedin', loggedIn);
+    app.get("/api/allUsers",findAllUsers);
     app.post("/api/user", createUser);
     app.get("/api/user", findUserByUsername);
     app.get("/api/assignment/user", findUserByCredentials);
@@ -30,35 +29,51 @@ module.exports = function (app, models) {
     app.post('/api/logout',  logout );
     app.get('/api/checkLoggedIn', checkLoggedIn);
     app.post ("/api/register", register);
-    app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect: '/assignment/index.html#!/profile',
-            failureRedirect: '/#!/login'
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get('/auth/google/callback',
+        passport.authenticate('google', {
+            successRedirect: '/#/profile',
+            failureRedirect: '/#/login'
         }));
 
-    function facebookStrategy(token, refreshToken, profile, done) {
-        userModel.findUserByFacebookId(profile.id).then(
-            function (user) {
-                if(user) {
-                    return done(null, user);
-                }
-                else {
-                    var newFacebookUser = {
-                        username:  profile.displayName,
-                        facebook: {
-                            id:    profile.id,
-                            token: token
-                        }
-                    };
-                    return userModel.createUser(newFacebookUser);
-                }
+    function findAllUsers(req,res) {
+        uModel.findAllUsers().then(function (users) {
+            res.json(users)
+        },
+        function (err) {
+            res.status(404).send(err);
+        })
+    }
 
-            },
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
-            function(err) {
-                if (err) { return done(err); }
-            })
+    function googleStrategy(token, refreshToken, profile, done) {
+        uModel
+            .findUserByGoogleId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var email = profile.emails[0].value;
+                        var emailParts = email.split("@");
+                        var newGoogleUser = {
+                            username:  emailParts[0],
+                            firstName: profile.name.givenName,
+                            lastName:  profile.name.familyName,
+                            email:     email,
+                            google: {
+                                id:    profile.id,
+                                token: token
+                            }
+                        };
+                        return userModel.createUser(newGoogleUser);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
             .then(
                 function(user){
                     return done(null, user);
@@ -66,16 +81,13 @@ module.exports = function (app, models) {
                 function(err){
                     if (err) { return done(err); }
                 }
-
-
             );
     }
 
-
     function register(req, res) {
         var user = req.body;
-       user.password = bcrypt.hashSync(user.password);
-        userModel
+        user.password = bcrypt.hashSync(user.password);
+        uModel
             .createUser(user)
             .then(
                 function (user) {
@@ -93,6 +105,10 @@ module.exports = function (app, models) {
         }
     }
 
+    function loggedIn(req, res) {
+        res.send(req.isAuthenticated() ? req.user : null);
+    }
+
     function  login (req, res) {
         var user = req.user;
         res.json(user);
@@ -103,7 +119,7 @@ module.exports = function (app, models) {
     }
 
     function localStrategy(username, password, done) {
-        userModel.findUserByUsername(username).then(
+        uModel.findUserByUsername(username).then(
             function (user) {
                 if(user && bcrypt.compareSync(password,user.password)) {
                     done(null, user);
@@ -111,8 +127,8 @@ module.exports = function (app, models) {
                 else {
                     done(null, false);
                 }
-                }
-                ,
+            }
+            ,
             function (error) {
                 done(error, false);
             }
@@ -125,7 +141,7 @@ module.exports = function (app, models) {
     }
 
     function deserializeUser(user, done) {
-        userModel
+        uModel
             .findUserById(user._id)
             .then(
                 function (user) {
@@ -141,7 +157,7 @@ module.exports = function (app, models) {
         var username = req.query['username'];
         var password = req.query['password'];
 
-        userModel
+        uModel
             .findUserByCredentials(username, password)
             .then(function (user) {
                 if (user !== null) {
@@ -157,7 +173,7 @@ module.exports = function (app, models) {
     function findUserByUsername(req, res) {
         var username = req.query['username'];
 
-        userModel
+        uModel
             .findUserByUsername(username)
             .then(function (user) {
                 res.json(user);
@@ -169,7 +185,7 @@ module.exports = function (app, models) {
     function findUserById(req, res) {
         var userId = req.params.userId;
 
-        userModel
+        uModel
             .findUserById(userId)
             .then(
                 function (user) {
@@ -183,7 +199,7 @@ module.exports = function (app, models) {
 
     function createUser(req, res) {
         var user = req.body;
-        userModel
+        uModel
             .createUser(user)
             .then(function (user) {
                 res.json(user);
@@ -193,7 +209,7 @@ module.exports = function (app, models) {
     function updateUser(req, res) {
         var id = req.body.id;
         var newUser = req.body.newUser;
-        userModel
+        uModel
             .updateUser(id, newUser)
             .then(function (user) {
                     res.sendStatus(200);
@@ -205,7 +221,7 @@ module.exports = function (app, models) {
 
     function deleteUser(req, res) {
         var id = req.params.userId;
-        userModel
+        uModel
             .deleteUser(id)
             .then(function (status) {
                     res.sendStatus(200);

@@ -1,0 +1,38 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#!/admin" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left">
+                        </span>
+                </a>
+            </p>
+            <a class="navbar-brand" style="padding-top: 20px">Edit User</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div>
+        <div ng-show="model.success" class="alert alert-success">
+            {{model.success}}
+        </div>
+        <label for="firstname">First Name</label>
+        <input ng-model="model.user.firstname"
+               type="text"
+               class="form-control"
+               id="firstname"
+               placeholder=""/>
+        <label for="lastname">Last Name</label>
+        <input ng-model="model.user.firstname"
+               type="text"
+               class="form-control"
+               id="lastname"
+               placeholder=""/>
+    </div>
+
+    <a class="btn btn-success btn-block" ng-click="model.updateUser()">Update</a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+</nav>

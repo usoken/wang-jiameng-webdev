@@ -1,0 +1,46 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#!/user/{{model.userId}}/findAll" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left">
+                        </span>
+                </a>
+            </p>
+            <a class="navbar-brand" style="padding-top: 20px">Share Information</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container" style="margin-top: 60px">
+
+    <ul class="list-group">
+        <li class="list-group-item">
+            <label>Name:</label>
+            <div class="pull-right">{{model.like.name}}</div>
+        </li>
+        <li class="list-group-item">
+            <label>Shared By:</label>
+            <a href="#!/user/{{model.userId}}/theOther/{{model.sharedUser._id}}/{{model.likeType}}/{{model.likeId}}"
+               class="pull-right">{{model.sharedUser.username}}</a>
+        </li>
+        <li class="list-group-item">
+            <label>Description:</label>
+            <div class="pull-right">{{model.like.description}}</div>
+        </li>
+        <li ng-repeat="share in model.photos" class="list-group-item myItem">
+            {{share.name}}
+            <div>
+                <img ng-src="{{share.url}}" width="100%"/>
+            </div>
+        </li>
+
+    </ul>
+
+</div>
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+</nav>

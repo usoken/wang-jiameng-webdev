@@ -1,0 +1,41 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#!/login" class="navbar-link">
+                        <span class="glyphicon glyphicon-home">
+                        </span>
+                </a>
+            </p>
+            <a class="navbar-brand " style="padding-top: 20px">
+                Admin
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <ul class="list-group">
+        <li ng-repeat="user in model.allusers" class="list-group-item myItem">
+            {{user.username}}
+
+            <a ng-click="model.deleteUser(user._id)" class="pull-right">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
+
+            <a href="#!/admin/{{user._id}}/edit" class="pull-right"
+               style="margin-right: 5px">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+
+
+        </li>
+    </ul>
+</div>
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+</nav>
+

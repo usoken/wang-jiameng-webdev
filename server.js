@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 //
 // app.use(session({ secret: process.env.SESSION_SECRET }));
-app.use(session({ secret: "anb"}));
+app.use(session({ secret: "secret"}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -18,7 +18,8 @@ app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
 require ("./test/app.js")(app);
-require("./assignment/app.js")(app);
+// require("./assignment/app.js")(app);
+require("./project/app.js")(app);
 
 var port = process.env.PORT || 3000;
 
