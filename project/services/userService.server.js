@@ -30,7 +30,7 @@ module.exports = function (app, model) {
     app.get('/api/checkLoggedIn', checkLoggedIn);
     app.post ("/api/register", register);
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
-    app.get('/auth/google/callback',
+    app.get('/oauth2callback',
         passport.authenticate('google', {
             successRedirect: '/#/profile',
             failureRedirect: '/#/login'
