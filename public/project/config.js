@@ -14,6 +14,10 @@
                 controllerAs: 'model'
             })
 
+            .when('/photo2016',{
+                templateUrl: 'views/homepage/photoOf2016.html'
+            })
+
             .when('/login', {
                 templateUrl: 'views/user/login.html',
                 controller: 'LoginController',

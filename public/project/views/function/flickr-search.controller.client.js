@@ -26,36 +26,18 @@
             var name = "";
             var description = "";
 
-            collectionService.createShare(vm.userId,photo.id, "music", description).then(
+            collectionService.createShare(vm.userId,photo.id, "photo", description).then(
                 function (res) {
                     collectionService.createFlickr(url,res.data._id);
                 }
             );
 
 
-            AllService.findShareMusic()
+            AllService.findSharePhoto()
                         .then(function (response) {
-                            vm.shareMusics = response.data;
+                            vm.sharePhotos = response.data;
                         });
             $location.url("/user/" + vm.userId + "/findAll");
-
-
-            // collectionService.update
-            // widget = {
-            //     '_id': vm.widgetId,
-            //     'name': '',
-            //     'widgetType': 'IMAGE',
-            //     'pageId': vm.pageId,
-            //     'width': '',
-            //     'url': url,
-            //     'text': ''
-            // };
-            //
-            // widgetService
-            //     .updateWidget(vm.widgetId, widget)
-            //     .then(function () {
-            //         $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget/' + vm.widgetId);
-            //     });
 
 
         }
