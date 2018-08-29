@@ -1,8 +1,7 @@
 
 # wang-jiameng-webdev
 
-I am a third year computer science student from Northeastern University.
-I once worked as Quality Assurance tester at Massachusetts Medical Society in 2016.
+I am a computer science student from Northeastern University.
 
 This repository is for web development projects.
 
